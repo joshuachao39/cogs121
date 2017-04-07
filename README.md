@@ -21,8 +21,10 @@
 * Location-based reminders
     Similar to time-based reminders except based on location - when you near a certain place the reminder will occur.
     
-* Meeting nearby people
-    For meeting people near you that you have mutual friends with.
-
 * Discover weekly for Yelp
     Discover local outings for you and your friends on a map.
+
+## Ignore this one (if 5 is a hard limit)
+
+* Meeting nearby people
+    For meeting people near you that you have mutual friends with.
