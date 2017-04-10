@@ -26,7 +26,7 @@ Augmented Reality Information - Allen
 
 Discover weekly nearby things to do - Rishi
 
-![discover-nearly](images/discover_nearly.jpg)
+![discover-nearly](images/discover-nearly.jpg)
 
 Get deals for things near you - Rishi
 
