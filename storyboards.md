@@ -24,4 +24,10 @@ Augmented Reality Information - Allen
 
 ![augmented-reality](images/augmented_reality.jpg)
 
-Rishi was here
+Discover weekly nearby things to do - Rishi
+
+![discover-nearly](images/discover_nearly.jpg)
+
+Get deals for things near you - Rishi
+
+![location-ads](images/location-ads.jpg)
