@@ -1,6 +1,6 @@
 ## This is COGS121
 
-* Joshua Chao
+* Joshua Chao (R.I.P.)
 * Allen Gao
 * Rishi Dhanaraj
 * Vincent Liaw
