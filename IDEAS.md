@@ -48,6 +48,6 @@
   * TSP - Vincent
 
 * Location-based stories - canv.us
-  * People dropping down pins with attached media - within friends
+  * People dropping down pins with attached media - within friends - Rishi
   * Discovery thing (like geocaching - people hiding interesting things) - pictures taken in the area - Vincent
 
