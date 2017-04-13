@@ -1,6 +1,3 @@
-* TOC
-{:toc}
-
 ## Will you marry me
 
 ### Pitch

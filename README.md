@@ -5,11 +5,9 @@
 * Rishi Dhanaraj
 * Vincent Liaw
 
-### Team number: 16
+### Team number: 16, C7
 
 ### 5 App Ideas
-
-
 
 * Location-based ads
   *  When you walk by a certain location the location will pop up on your phone, indicating things like discounts for stores.
