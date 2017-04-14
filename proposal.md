@@ -1,11 +1,11 @@
 ## Milestone 3
 
-### Orient - A New Way to Explore
-Tour and discover places within a 100 ft. radius. Orient literaly points you to cool, hidden, and unique things in the world around you.
+### Guorient - A New Way to Explore
+Tour and discover places within a 100 ft. radius. Guorient literally points you to cool, hidden, and unique things in the world around you.
 
 ### Storyboard
 ![augmented-reality](images/augmented_reality.jpg)
-This storyboard illustrates a need that our proposal would satisfy. This need would be for someone to explore the world around them and discover the most interesting locations and places that surround them, orienting themselves along the best path to learning their surroundings. 
+This storyboard illustrates a need that our proposal would satisfy. This need would be for someone to explore the world around them and discover the most interesting locations and places that surround them, guorienting themselves along the best path to learning their surroundings.
 
 ### Feedback
 * albertxp06 noted that "lots of attractions already have the information via some pamphlet, some plaque, or have someway to get to a website with digitized information" - we can make use of this by scraping the digitized information and incorporating it into our application.
@@ -14,8 +14,8 @@ This storyboard illustrates a need that our proposal would satisfy. This need wo
 ### Features
 ![feature](images/Feature.JPG)
 * Arrows pointing to nearby attractions would be a feature portrayed by the sketch above.
-* A map that contains markers signifying interesting locations that one can visit.
-* The ability to open up a camera view and tap on an object in the real world, and have a line of text pop up describing what the user is seeing.
+* Brief tidbits on each attraction for the user to see if they're interested in the attraction.
+* View relevant full information on each attraction (Yelp, Wikipedia, FB Page, hours, etc).
 
 ### Programming Work
 * Allen - Incorporating augmented reality and compass directions
