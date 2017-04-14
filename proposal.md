@@ -2,7 +2,6 @@
 
 ### Orient - A New Way to Explore
 
-### Catchy Summary
 
 ### Storyboard
 ![augmented-reality](images/augmented_reality.jpg)
@@ -10,6 +9,8 @@
 This storyboard illustrates a need that our proposal would satisfy. This need would be for someone to explore the world around them and discover the most interesting locations and places that surround them, orienting themselves along the best path to learning their surroundings. 
 
 ### Feedback
+* albertxp06 noted that "lots of attractions already have the information via some pamphlet, some plaque, or have someway to get to a website with digitized information" - we can make use of this by scraping the digitized information and incorporating it into our application.
+* jphung11 commented that she would be "curious to see if the information would be from users or given/written by the app creators", and thinking about this, we decided that we would scrape the information for now.
 
 ### Features
 ![feature](images/Feature.JPG)
