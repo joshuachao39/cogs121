@@ -5,7 +5,6 @@
 
 ### Storyboard
 ![augmented-reality](images/augmented_reality.jpg)
-
 This storyboard illustrates a need that our proposal would satisfy. This need would be for someone to explore the world around them and discover the most interesting locations and places that surround them, orienting themselves along the best path to learning their surroundings. 
 
 ### Feedback
@@ -14,6 +13,9 @@ This storyboard illustrates a need that our proposal would satisfy. This need wo
 
 ### Features
 ![feature](images/Feature.JPG)
+* Arrows pointing to nearby attractions would be a feature portrayed by the sketch above.
+* A map that contains markers signifying interesting locations that one can visit.
+* The ability to open up a camera view and tap on an object in the real world, and have a line of text pop up describing what the user is seeing.
 
 ### Programming Work
 * Allen - Incorporating augmented reality and compass directions
