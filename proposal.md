@@ -1,7 +1,7 @@
 ## Milestone 3
 
 ### Orient - A New Way to Explore
-
+Tour and discover places within a 100 ft. radius. Orient literaly points you to cool, hidden, and unique things in the world around you.
 
 ### Storyboard
 ![augmented-reality](images/augmented_reality.jpg)
