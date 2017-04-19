@@ -7,6 +7,6 @@ Vincent Liaw
 
 ![vincent](images/M4-vincent.jpg)
 
-Yuxiao Faqng
+Yuxiao Fang
 ![yuxiao](/images/Yuxiao-prototype.png)
 
