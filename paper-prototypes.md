@@ -10,3 +10,5 @@ Vincent Liaw
 Yuxiao Fang
 ![yuxiao](/images/Yuxiao-prototype.png)
 
+Rishi Dhanaraj
+![rishi](/images/M4-rishi.jpg)
