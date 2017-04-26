@@ -16,6 +16,52 @@ import {
 import PlaceMap from './place_map';
 import AddPlace from './add_place';
 
+const interestingRegions = [
+  {
+    title: "Humanities and Social Sciences Building",
+    latitude: 32.878336,
+    longitude: -117.241648,
+  },
+  {
+    title: "Geisel Library",
+    latitude: 32.881174, 
+    longitude: -117.237453,
+  },
+  {
+    title: "Price Center Theater",
+    latitude: 32.879912, 
+    longitude: -117.237110,
+  },
+  {
+    tilte: "Cognitive Science Building",
+    latitude: 32.880546,
+    longitude: -117.239459,
+  }
+];
+
+const SFInterestingRegions = [
+  {
+    title: "Magic Bus San Francisco",
+    latitude: 37.7882811,
+    longitude: -122.4071982
+  },
+  {
+    title: "Apple Union Square",
+    latitude: 37.7882811,
+    longitude: -122.4071982
+  },
+  {
+    title: "Neiman Marcus",
+    latitude: 37.7882811,
+    longitude: -122.4071982
+  },
+  {
+    title: "Chipotle Mexican Grill",
+    latitude: 37.7881016,
+    longitude: -122.4087334
+  }
+];
+
 export default class Places extends Component {
   constructor() {
     super();
@@ -36,13 +82,27 @@ export default class Places extends Component {
           title: 'Arlington',
           latitude: 38.8783,
           longitude: -77.0687
-        },
-        {
-          title: 'Little Falls Park',
-          latitude: 38.942877,
-          longitude: -77.107268
         }
       ],
+      annotations: SFInterestingRegions,
+      // annotations: [
+        // {
+        //   title: 'Smithsonian Museum',
+        //   latitude: 38.8980,
+        //   longitude: -77.0230
+        // },
+        // {
+        //   title: 'UMCP',
+        //   latitude: 38.9869,
+        //   longitude: -76.9426
+        // },
+        // {
+        //   title: 'Arlington',
+        //   latitude: 38.8783,
+        //   longitude: -77.0687
+        // }
+      // ],
+>>>>>>> ecd262c7e4ca83bd4a1f6480f161fd51a6b17832
     };
   }
   

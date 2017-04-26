@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {
   MapView,
+  Linking,
   View,
   StyleSheet,
   Text,
@@ -8,6 +9,35 @@ import {
 } from 'react-native';
 
 export default class PlaceMap extends Component {
+  constructor(props) {
+    super(props);
+    let lat = 0;
+    let lng = 0;
+    const _this = this;
+    navigator.geolocation.getCurrentPosition((position) => {
+      let initialPosition = JSON.stringify(position);
+      lat = position.coords.latitude;
+      lng = position.coords.longitude;
+      _this.region = {
+        latitude: lat,
+        longitude: lng,
+        latitudeDelta: 0.01,
+        longitudeDelta: 0.01,
+        title: "Current Location",
+      };
+    }, (error) => alert(error.message),
+      {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000},
+    );
+
+    this.watchID = navigator.geolocation.watchPosition((position) => {
+      var lastPosition = JSON.stringify(position);
+      this.setState({
+        lastPosition,
+        position,
+      });
+    });
+  }
+
   handleNavigation(la, lo) {
     const rla = this.region.latitude;
     const rlo = this.region.longitude;
@@ -26,19 +56,15 @@ export default class PlaceMap extends Component {
           <Text style={styles.buttonText}>Navigation</Text>
         </TouchableHighlight>
       );
-      })
+    });
+
     return (
       <View style={styles.view}>
         <MapView
           style={styles.map}
-          region={{
-            latitude: 38.8977,
-            longitude: -77.0365,
-            latitudeDelta: 0.2,
-            longitudeDelta: 0.2,
-            title: "White House"
-          }}
+          region={this.region}
           annotations={annotations}
+          showsUserLocation={true}
         />
       </View>
     );
