@@ -35,6 +35,26 @@ const interestingRegions = [
 ];
 
 const SFInterestingRegions = [
+  {
+    title: "Magic Bus San Francisco",
+    latitude: 37.7882811,
+    longitude: -122.4071982
+  },
+  {
+    title: "Apple Union Square",
+    latitude: 37.7882811,
+    longitude: -122.4071982
+  },
+  {
+    title: "Neiman Marcus",
+    latitude: 37.7882811,
+    longitude: -122.4071982
+  },
+  {
+    title: "Chipotle Mexican Grill",
+    latitude: 37.7881016,
+    longitude: -122.4087334
+  }
 ];
 
 export default class Places extends Component {
@@ -42,7 +62,7 @@ export default class Places extends Component {
     super();
     this.state = {
       selectedTab: 0,
-      annotations: interestingRegions,
+      annotations: SFInterestingRegions,
       // annotations: [
         // {
         //   title: 'Smithsonian Museum',

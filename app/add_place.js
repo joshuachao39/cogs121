@@ -18,6 +18,18 @@ const Error = (props) => {
 export default class AddPlace extends Component {
   constructor() {
     super();
+    const _this = this;
+    navigator.geolocation.getCurrentPosition((position) => {
+      let initialPosition = JSON.stringify(position);
+      lat = position.coords.latitude;
+      lng = position.coords.longitude;
+      _this.position = {
+        latitude: lat,
+        longitude: lng,
+      };
+    }, (error) => alert(error.message),
+      {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000},
+    );
     this.state = {
       title: '',
       latitude: '',
@@ -26,6 +38,13 @@ export default class AddPlace extends Component {
       latitudeError: '',
       longitudeError: ''
     };
+  }
+
+  handleUseCurrentLocation() {
+    this.setState({
+      latitude: this.position.latitude,
+      longitude: this.position.longitude,
+    });
   }
 
   handleAddPlace() {
@@ -82,6 +101,7 @@ export default class AddPlace extends Component {
         <TextInput
           keyboardType="numbers-and-punctuation"
           style={styles.textInput}
+          value={this.state.latitude.toString()}
           onChangeText={(latitude) => this.setState({ latitude })}
         ></TextInput>
         <Error message={this.state.latitudeError} />
@@ -90,12 +110,20 @@ export default class AddPlace extends Component {
         <TextInput
           keyboardType="numbers-and-punctuation"
           style={styles.textInput}
+          value={this.state.longitude.toString()}
           onChangeText={(longitude) => this.setState({ longitude })}
         ></TextInput>
         <Error message={this.state.longitudeError} />
 
-        <TouchableHighlight 
+        <TouchableHighlight
           style={styles.button}
+          onPress={this.handleUseCurrentLocation.bind(this)}
+        >
+          <Text style={styles.buttonText}>Use Current Location</Text>
+        </TouchableHighlight>
+
+        <TouchableHighlight 
+          style={styles.buttonPrimary}
           onPress={this.handleAddPlace.bind(this)}
         >
           <Text style={styles.buttonText}>Add Place</Text>
@@ -110,28 +138,35 @@ const styles = StyleSheet.create({
     paddingTop: 50,
     paddingLeft: 30,
     paddingRight: 30,
-    backgroundColor: '#fed',
-    flex: 1
+    backgroundColor: '#E3E3E3',
+    flex: 1,
   },
   text: {
-    color: '#333333',
-    marginBottom: 5
+    color: '#233142',
+    marginBottom: 5,
   },
   textInput: {
     height: 40,
-    borderColor: 'gray',
+    borderColor: '#455D7A',
     borderWidth: 1,
-    marginBottom: 5
+    marginBottom: 5,
   },
   button: {
-    backgroundColor: '#ff7f50',
+    backgroundColor: '#F95959',
     padding: 12,
-    borderRadius: 6
+    borderRadius: 6,
+    marginBottom: 5,
+  },
+  buttonPrimary: {
+    backgroundColor: '#455D7A',
+    padding: 12,
+    borderRadius: 6,
+    marginBottom: 5,
   },
   buttonText: {
-    color: '#fff',
+    color: '#FAFAFA',
     fontSize: 18,
     fontWeight: 'bold',
-    textAlign: 'center'
+    textAlign: 'center',
   }
 });
