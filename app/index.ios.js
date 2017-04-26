@@ -36,6 +36,11 @@ export default class Places extends Component {
           title: 'Arlington',
           latitude: 38.8783,
           longitude: -77.0687
+        },
+        {
+          title: 'Little Falls Park',
+          latitude: 38.942877,
+          longitude: -77.107268
         }
       ],
     };
