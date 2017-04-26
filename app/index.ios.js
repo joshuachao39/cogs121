@@ -35,10 +35,7 @@ const interestingRegions = [
 ];
 
 const SFInterestingRegions = [
-  {
-    
-  }
-]
+];
 
 export default class Places extends Component {
   constructor() {
