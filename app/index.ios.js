@@ -16,28 +16,53 @@ import {
 import PlaceMap from './place_map';
 import AddPlace from './add_place';
 
+const interestingRegions = [
+  {
+    title: "Humanities and Social Sciences Building",
+    latitude: 32.878336,
+    longitude: -117.241648,
+  },
+  {
+    title: "Geisel Library",
+    latitude: 32.881174, 
+    longitude: -117.237453,
+  },
+  {
+    title: "Price Center Theater",
+    latitude: 32.879912, 
+    longitude: -117.237110,
+  }
+];
+
+const SFInterestingRegions = [
+  {
+    
+  }
+]
+
 export default class Places extends Component {
   constructor() {
     super();
     this.state = {
       selectedTab: 0,
-      annotations: [
-        {
-          title: 'Smithsonian Museum',
-          latitude: 38.8980,
-          longitude: -77.0230
-        },
-        {
-          title: 'UMCP',
-          latitude: 38.9869,
-          longitude: -76.9426
-        },
-        {
-          title: 'Arlington',
-          latitude: 38.8783,
-          longitude: -77.0687
-        }
-      ],
+      annotations: interestingRegions,
+      // annotations: [
+        // {
+        //   title: 'Smithsonian Museum',
+        //   latitude: 38.8980,
+        //   longitude: -77.0230
+        // },
+        // {
+        //   title: 'UMCP',
+        //   latitude: 38.9869,
+        //   longitude: -76.9426
+        // },
+        // {
+        //   title: 'Arlington',
+        //   latitude: 38.8783,
+        //   longitude: -77.0687
+        // }
+      // ],
     };
   }
   
