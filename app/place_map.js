@@ -64,6 +64,7 @@ export default class PlaceMap extends Component {
           style={styles.map}
           region={this.region}
           annotations={annotations}
+          showsUserLocation={true}
         />
       </View>
     );
