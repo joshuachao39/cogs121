@@ -31,6 +31,11 @@ const interestingRegions = [
     title: "Price Center Theater",
     latitude: 32.879912, 
     longitude: -117.237110,
+  },
+  {
+    tilte: "Cognitive Science Building",
+    latitude: 32.880546,
+    longitude: -117.239459,
   }
 ];
 
@@ -62,6 +67,23 @@ export default class Places extends Component {
     super();
     this.state = {
       selectedTab: 0,
+      annotations: [
+        {
+          title: 'Smithsonian Museum',
+          latitude: 38.8980,
+          longitude: -77.0230
+        },
+        {
+          title: 'UMCP',
+          latitude: 38.9869,
+          longitude: -76.9426
+        },
+        {
+          title: 'Arlington',
+          latitude: 38.8783,
+          longitude: -77.0687
+        }
+      ],
       annotations: SFInterestingRegions,
       // annotations: [
         // {
@@ -80,6 +102,7 @@ export default class Places extends Component {
         //   longitude: -77.0687
         // }
       // ],
+>>>>>>> ecd262c7e4ca83bd4a1f6480f161fd51a6b17832
     };
   }
   
