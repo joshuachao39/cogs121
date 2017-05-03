@@ -33,8 +33,14 @@ export const mapsData = [
             // Points specify points of interest
             {
                 name: 'Help Table',
-                boundary: [
-                ],
+                boundary: {
+                    points: [
+                        { lat: 32.885346, lon: -117.239229 },
+                        { lat: 32.885253, lon: -117.239248 },
+                        { lat: 32.885221, lon: -117.239074 },
+                        { lat: 32.885351, lon: -117.239099 },
+                    ],
+                },
             },
         ],
     },

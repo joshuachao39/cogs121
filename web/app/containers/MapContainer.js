@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { Map, Marker, Popup, TileLayer, Polygon } from 'react-leaflet';
+import { Map, Popup, TileLayer, Polygon } from 'react-leaflet';
 import { mapsData } from '../mapsData';
 
 export default class MapContainer extends React.Component {
@@ -37,14 +37,11 @@ export default class MapContainer extends React.Component {
                         url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
                         attribution="&copy; <a href='http://osm.org/copyright'>OpenStreetMap</a> contributors"
                     />
-                    <Marker position={position}>
+                    <Polygon positions={positions}>
                         <Popup>
-                            <span>A pretty CSS3 popup.<br/>Easily customizable.</span>
+                            <span>{this.map.name}<br />{this.map.description}</span>
                         </Popup>
-                    </Marker>
-                    <Polygon
-                        positions={positions}
-                    />
+                    </Polygon>
                 </Map>
             </div>
         );
