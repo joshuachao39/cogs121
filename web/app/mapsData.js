@@ -57,6 +57,37 @@ export const mapsData = [
             },
         ],
     },
+    {
+        id: 1, // Should reflect index of array
+        type: MAP_EVENT,
+        name: 'LA Hacks',
+        description: 'was once a somewhat hype hackathon, but is now shadowed by the more popular SD Hacks',
+        coords: {
+            // Denotes the coordinates to center the map on
+            lat: 34.068921,
+            lon: -118.4473698,
+        },
+        // Denotes default amount to zoom the map at
+        defaultZoom: 0.3,
+        boundary: {
+            // Boundary is a list of points enclosing the polygon
+            // Contains a list of latitudes and longitudes
+            points: [
+                { lat: 34.070029, lon: -118.4482479 },
+                { lat: 34.070047, lon: -118.4473143 },
+                { lat: 34.070762, lon: -118.4473193 },
+                { lat: 34.070758, lon: -118.4485153 },
+            ],
+        },
+        points: [
+            // Points specify points of interest
+            {
+                name: 'Help Table',
+                boundary: [
+                ],
+            },
+        ],
+    },
 ];
 
 
