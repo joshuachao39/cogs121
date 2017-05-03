@@ -7,5 +7,7 @@
 * Yuxiao: tried to integrate react-native-maps to app
 * Allen: populated fake data into map for subevents of a main event
 
+Polygon Drawn
+![polygonscreenshot](/images/M7-app-screenshot.png)
 
 
