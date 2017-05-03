@@ -23,6 +23,26 @@ export default class MapContainer extends React.Component {
             positions.push([ elem.lat, elem.lon ]);
         });
 
+        const pointsData = this.map.points;
+
+        const pointsMap = pointsData.map((point) => {
+            let pointPositions = [];
+            point.boundary.points.forEach((elem) => {
+                pointPositions.push([ elem.lat, elem.lon ]);
+            });
+            return (
+                <Polygon
+                    positions={pointPositions}
+                    color="red"
+                    key={point.name}
+                >
+                    <Popup>
+                        <span>{point.name}</span>
+                    </Popup>
+                </Polygon>
+            );
+        });
+
         return (
             <div className="gr-map--wrapper container-fluid">
                 <Map
@@ -41,6 +61,7 @@ export default class MapContainer extends React.Component {
                         <Popup>
                             <span>{this.map.name}<br />{this.map.description}</span>
                         </Popup>
+                        {pointsMap}
                     </Polygon>
                 </Map>
             </div>
