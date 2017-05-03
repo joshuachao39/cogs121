@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { Map, Popup, TileLayer, Polygon } from 'react-leaflet';
+import { Map, Popup, TileLayer, LayersControl, Polygon } from 'react-leaflet';
 import { mapsData } from '../mapsData';
 
 export default class MapContainer extends React.Component {
@@ -31,20 +31,24 @@ export default class MapContainer extends React.Component {
                 pointPositions.push([ elem.lat, elem.lon ]);
             });
             return (
-                <Polygon
-                    positions={pointPositions}
-                    color="red"
-                    key={point.name}
-                >
-                    <Popup>
-                        <span>{point.name}</span>
-                    </Popup>
-                </Polygon>
+                <LayersControl.Overlay name={point.name}>
+                    <Polygon
+                        positions={pointPositions}
+                        color="red"
+                        zIndex="10"
+                        key={point.name}
+                    >
+                        <Popup>
+                            <span>{point.name}</span>
+                        </Popup>
+                    </Polygon>
+                </LayersControl.Overlay>
             );
         });
 
         return (
             <div className="gr-map--wrapper container-fluid">
+                <h2>{this.map.name}</h2>
                 <Map
                     center={position}
                     zoom={18}
@@ -53,16 +57,20 @@ export default class MapContainer extends React.Component {
                         height: '80vh',
                     }}
                 >
-                    <TileLayer
-                        url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
-                        attribution="&copy; <a href='http://osm.org/copyright'>OpenStreetMap</a> contributors"
-                    />
-                    <Polygon positions={positions}>
-                        <Popup>
-                            <span>{this.map.name}<br />{this.map.description}</span>
-                        </Popup>
-                        {pointsMap}
-                    </Polygon>
+                    <LayersControl.BaseLayer name="map-background">
+                        <TileLayer
+                            url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
+                            attribution="&copy; <a href='http://osm.org/copyright'>OpenStreetMap</a> contributors"
+                        />
+                    </LayersControl.BaseLayer>
+                    <LayersControl.BaseLayer name="event-wrapper">
+                        <Polygon positions={positions}>
+                            {/* <Popup>
+                                <span>{this.map.name}<br />{this.map.description}</span>
+                            </Popup>*/ }
+                        </Polygon>
+                    </LayersControl.BaseLayer>
+                    {pointsMap}
                 </Map>
             </div>
         );
