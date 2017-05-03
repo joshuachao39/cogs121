@@ -8,6 +8,6 @@
 * Allen: populated fake data into map for subevents of a main event
 
 Polygon Drawn
-![polygonscreenshot](/images/M7-app-screenshot.png)
-
+![polygonscreenshot](/images/M7-polygon-screenshot.png)
+This screenshot shows how we utilized leaflet to incorporate the drawing of polygons onto a map for users to see, as well as subevents that define more specific locations in an event. 
 
