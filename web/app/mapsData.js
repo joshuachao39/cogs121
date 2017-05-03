@@ -6,6 +6,7 @@ import { MAP_EVENT } from './components/MapTileTypes';
  */
 export const mapsData = [
     {
+        id: 0, // Should reflect index of array
         type: MAP_EVENT,
         name: 'SD Hacks',
         description: 'UC San Diegos premier hackathon',
