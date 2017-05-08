@@ -5,3 +5,6 @@ Vincent Liaw - Map Search Functionality on Mobile. The interactions here shown a
 
 Rishi Dhanaraj - Turn by Turn directions feature, both list view and turn by turn view. Includes search functionality as relevant to this feature.
 ![rishi](images/M8-rishi.jpg)
+
+Yuxiao Fang - Basic settings UI, including color schemes, event history, notification settings and account settings. 
+![yuxiao](images/M8-yuxiao.png)
