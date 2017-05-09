@@ -4,13 +4,12 @@ import { Link } from 'react-router';
 import { MAP_EVENT } from './MapTileTypes';
 
 const MapTile = ({ data }) => {
-    const id = (data.type === MAP_EVENT) ? data.id : 'New';
     const name = (data.type === MAP_EVENT) ? data.name : 'New';
     const description = (data.type === MAP_EVENT) ? data.description : 'Create a new map';
 
     return (
         <div className="col-md-4">
-            <Link to={`/maps/${id}`}>
+            <Link to={`/maps/${name}`}>
                 <div className="gr-card card">
                     <img
                         className="card-img-top"
