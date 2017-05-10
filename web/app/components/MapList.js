@@ -19,7 +19,7 @@ const MapList = ({ filter }) => {
     });
 
     rows.push(
-      <MapTile key={'new'} data={MAP_NEW} />
+      <MapTile key={'new'} data={{ type: MAP_NEW }} />
     );
 
     return (
