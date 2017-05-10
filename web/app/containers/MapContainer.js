@@ -1,13 +1,15 @@
 import React, { PropTypes } from 'react';
 import { Map, Popup, TileLayer, Polygon } from 'react-leaflet';
-import { mapsData } from '../mapsData';
+import { connect } from 'react-redux';
 
-export default class MapContainer extends React.Component {
+import * as actions from '../actions';
+
+class MapContainer extends React.Component {
     constructor(props) {
         super(props);
 
         this.mapId = parseInt(this.props.params.mapId, 10);
-        this.map = mapsData[this.mapId];
+        this.map = this.props.maps[this.mapId];
 
         // TODO: this.map is undefined -> 404 error
     }
@@ -15,12 +17,12 @@ export default class MapContainer extends React.Component {
     render() {
         const position = [
             this.map.coords.lat,
-            this.map.coords.lon,
+            this.map.coords.lng,
         ];
 
         const positions = [];
         this.map.boundary.points.forEach((elem) => {
-            positions.push([ elem.lat, elem.lon ]);
+            positions.push([ elem.lat, elem.lng ]);
         });
 
         const pointsData = this.map.points;
@@ -28,7 +30,7 @@ export default class MapContainer extends React.Component {
         const pointsMap = pointsData.map((point) => {
             let pointPositions = [];
             point.boundary.points.forEach((elem) => {
-                pointPositions.push([ elem.lat, elem.lon ]);
+                pointPositions.push([ elem.lat, elem.lng ]);
             });
             return (
                 <Polygon
@@ -71,7 +73,15 @@ export default class MapContainer extends React.Component {
 }
 
 MapContainer.propTypes = {
-    // data: PropTypes.object,
     mapName: PropTypes.string,
     params: PropTypes.object,
+    maps: PropTypes.maps,
 };
+
+function mapStateToProps(state) {
+    return {
+        maps: state.maps,
+    };
+}
+
+export default connect(mapStateToProps, actions)(MapContainer);

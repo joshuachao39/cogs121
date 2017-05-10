@@ -1,11 +1,13 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Map, TileLayer } from 'react-leaflet';
+import { MAP_EVENT } from '../../components/MapTileTypes';
 
 // Seed some locations for the demo
 const seededLocations = { // eslint-disable-line
     'San Francisco': {
         lat: 37.772607,
-        lon: -122.435886,
+        lng: -122.435886,
     },
 };
 
@@ -19,14 +21,23 @@ export default class LocationFields extends React.Component {
             locationName: 'San Francisco',
             position: {
                 lat: 37.772607,
-                lon: -122.435886,
+                lng: -122.435886,
             },
         };
 
         this.changeName = this.changeName.bind(this);
         this.changeLocationName = this.changeLocationName.bind(this);
+        this.handleDrag = this.handleDrag.bind(this);
 
-        this.validateAndProceed = this.validateAndProceed.bind(this);
+        this.validateAndPrevious = this.validateAndPrevious.bind(this);
+        this.validateAndNext = this.validateAndNext.bind(this);
+        this.validate = this.validate.bind(this);
+    }
+
+    handleDrag(e) {
+        this.setState({
+            position: e.target.options.center,
+        });
     }
 
     changeName(e) {
@@ -46,9 +57,22 @@ export default class LocationFields extends React.Component {
         // TODO: or use coordinates to search
     }
 
-    validateAndProceed() {
-        // TODO: validation
+    validate() {
         return true;
+    }
+
+    validateAndPrevious() {
+        if (this.validate()) {
+            this.props.handleInit(MAP_EVENT, this.state.mapName, this.state.locationName, this.state.position);
+            this.props.prevStep();
+        }
+    }
+
+    validateAndNext() {
+        if (this.validate()) {
+            this.props.handleInit(MAP_EVENT, this.state.mapName, this.state.locationName, this.state.position);
+            this.props.nextStep();
+        }
     }
 
     render() {
@@ -78,6 +102,7 @@ export default class LocationFields extends React.Component {
                 </div>
                 <div className="gr-map--wrapper">
                     <Map
+                        onDragEnd={this.handleDrag}
                         center={position}
                         zoom={18}
                         scrollWheelZoom={false}
@@ -92,20 +117,26 @@ export default class LocationFields extends React.Component {
                     </Map>
                 </div>
                 <div className="gr-step--selector">
-                    <a
+                    <button
                         className="btn btn-default gr-btn--left gr-btn"
+                        onClick={this.validateAndPrevious}
                     >
                         Prev
-                    </a>
-                    <a
-                        href=""
+                    </button>
+                    <button
                         className="btn btn-default gr-btn--right gr-btn"
-                        onClick={this.validateAndProceed}
+                        onClick={this.validateAndNext}
                     >
                         Next
-                    </a>
+                    </button>
                 </div>
             </div>
         );
     }
 }
+
+LocationFields.propTypes = {
+    nextStep: PropTypes.func,
+    prevStep: PropTypes.func,
+    handleInit: PropTypes.func,
+};

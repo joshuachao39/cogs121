@@ -6,43 +6,42 @@ import { EditControl } from 'react-leaflet-draw';
 const propTypes = {
     nextStep: PropTypes.func,
     prevStep: PropTypes.func,
+    handleBoundaries: PropTypes.func,
+    position: PropTypes.object,
 };
 
 export default class DrawBoundaryFields extends React.Component {
     constructor(props) {
         super(props);
 
+        // TODO: only allow one boundary to be drawn
+
         this.state = {
             mapName: 'New Map',
             locationName: 'San Francisco',
-            position: {
-                lat: 37.772607,
-                lon: -122.435886,
-            },
+            // Keeps track of if the boundary of the event has been created
+            boundaryCreated: false,
         };
 
         this.validate = this.validate.bind(this);
         this.validateAndNext = this.validateAndNext.bind(this);
         this.validateAndPrevious = this.validateAndPrevious.bind(this);
+        this._onCreate = this._onCreate.bind(this);
     }
 
     validate() {
-        // TODO
-        return true;
+        return this.state.boundaryCreated;
     }
 
     validateAndPrevious() {
-        if (this.validate()) {
-            // TODO: add some redux saving before moving on
-            this.props.prevStep();
-        }
+        this.props.prevStep();
     }
-
 
     validateAndNext() {
         if (this.validate()) {
-            // TODO: add some redux saving before moving on
             this.props.nextStep();
+        } else {
+            console.log('Boundary not created');
         }
     }
 
@@ -50,14 +49,19 @@ export default class DrawBoundaryFields extends React.Component {
      * Handler to handle the creation of polygons
      */
     _onCreate(e) {
-        console.log(e);
+        // Prep datatype
+        this.props.handleBoundaries(e.layer._latlngs[0]);
+        this.setState({
+            boundaryCreated: true,
+        });
     }
 
     render() {
-        const { position } = this.state;
+        const { position } = this.props;
 
         return (
             <div className="gr-wrapper container-fluid">
+                <h4>Draw the boundary of your venue</h4>
                 <div className="gr-map--wrapper">
                     <Map
                         center={position}
@@ -79,6 +83,9 @@ export default class DrawBoundaryFields extends React.Component {
                                 onDeleted={this._onDeleted}
                                 draw={{
                                     marker: false,
+                                    circle: false,
+                                    rectangle: false,
+                                    line: false,
                                 }}
                             />
                         </FeatureGroup>
