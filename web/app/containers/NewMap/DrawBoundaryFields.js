@@ -1,6 +1,12 @@
 import React from 'react';
-import { Map, TileLayer, FeatureGroup, Circle } from 'react-leaflet';
+import PropTypes from 'prop-types';
+import { Map, TileLayer, FeatureGroup } from 'react-leaflet';
 import { EditControl } from 'react-leaflet-draw';
+
+const propTypes = {
+    nextStep: PropTypes.func,
+    prevStep: PropTypes.func,
+};
 
 export default class DrawBoundaryFields extends React.Component {
     constructor(props) {
@@ -15,14 +21,34 @@ export default class DrawBoundaryFields extends React.Component {
             },
         };
 
-        this.validateAndProceed = this.validateAndProceed.bind(this);
+        this.validate = this.validate.bind(this);
+        this.validateAndNext = this.validateAndNext.bind(this);
+        this.validateAndPrevious = this.validateAndPrevious.bind(this);
     }
 
-    validateAndProceed() {
-        // TODO: validation
+    validate() {
+        // TODO
         return true;
     }
 
+    validateAndPrevious() {
+        if (this.validate()) {
+            // TODO: add some redux saving before moving on
+            this.props.prevStep();
+        }
+    }
+
+
+    validateAndNext() {
+        if (this.validate()) {
+            // TODO: add some redux saving before moving on
+            this.props.nextStep();
+        }
+    }
+
+    /**
+     * Handler to handle the creation of polygons
+     */
     _onCreate(e) {
         console.log(e);
     }
@@ -47,7 +73,7 @@ export default class DrawBoundaryFields extends React.Component {
                         />
                         <FeatureGroup>
                             <EditControl
-                                position="topright"
+                                position="topleft"
                                 onEdited={this._onEditPath}
                                 onCreated={this._onCreate}
                                 onDeleted={this._onDeleted}
@@ -55,28 +81,26 @@ export default class DrawBoundaryFields extends React.Component {
                                     marker: false,
                                 }}
                             />
-                            <Circle
-                                center={[51.51, -0.06]}
-                                radius={200}
-                            />
                         </FeatureGroup>
                     </Map>
                 </div>
                 <div className="gr-step--selector">
-                    <a
+                    <button
                         className="btn btn-default gr-btn--left gr-btn"
+                        onClick={this.validateAndPrevious}
                     >
                         Prev
-                    </a>
-                    <a
-                        href=""
+                    </button>
+                    <button
                         className="btn btn-default gr-btn--right gr-btn"
-                        onClick={this.validateAndProceed}
+                        onClick={this.validateAndNext}
                     >
                         Next
-                    </a>
+                    </button>
                 </div>
             </div>
         );
     }
 }
+
+DrawBoundaryFields.propTypes = propTypes;

@@ -13,6 +13,8 @@ const seededLocations = { // eslint-disable-line
     },
 };
 
+const endState = 4;
+
 export default class NewMapContainer extends React.Component {
     constructor(props) {
         super(props);
@@ -22,16 +24,60 @@ export default class NewMapContainer extends React.Component {
         };
     }
 
+    nextStep() {
+        if (this.state.step === endState) {
+            // Finalize (send the post request here)
+        } else {
+            this.setState({
+                step: this.state.step + 1,
+            });
+        }
+    }
+
+    prevStep() {
+        if (this.state.step === 1) {
+            // Return to previous page
+        } else {
+            this.setState({
+                step: this.state.step - 1,
+            });
+        }
+    }
+
     render() {
         switch (this.state.step) {
-            case 1:
-                return <LocationFields />;
-            case 2:
-                return <DrawBoundaryFields />;
-            case 3:
-                return <PointsOfInterestFields />;
-            case 4:
-                return <FinalizeFields />;
+            case 1: {
+                return (
+                    <LocationFields
+                        nextStep={this.nextStep}
+                        prevStep={this.prevStep}
+                    />
+                );
+            }
+            case 2: {
+                return (
+                    <DrawBoundaryFields
+                        nextStep={this.nextStep}
+                        prevStep={this.prevStep}
+                    />
+                );
+            }
+            case 3: {
+                return (
+                    <PointsOfInterestFields
+                        nextStep={this.nextStep}
+                        prevStep={this.prevStep}
+                    />
+                );
+            }
+            case 4: {
+                return (
+                    <FinalizeFields
+                        nextStep={this.nextStep}
+                        prevStep={this.prevStep}
+                    />
+                );
+            }
             default:
                 return <div />;
         }
