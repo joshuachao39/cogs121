@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { Map, Popup, TileLayer, Polygon } from 'react-leaflet';
+import { Map, Marker, Popup, TileLayer, Polygon } from 'react-leaflet';
 import { mapsData } from '../mapsData';
 
 export default class MapContainer extends React.Component {
@@ -23,26 +23,6 @@ export default class MapContainer extends React.Component {
             positions.push([ elem.lat, elem.lon ]);
         });
 
-        const pointsData = this.map.points;
-
-        const pointsMap = pointsData.map((point) => {
-            let pointPositions = [];
-            point.boundary.points.forEach((elem) => {
-                pointPositions.push([ elem.lat, elem.lon ]);
-            });
-            return (
-                <Polygon
-                    positions={pointPositions}
-                    color="red"
-                    key={point.name}
-                >
-                    <Popup>
-                        <span>{point.name}</span>
-                    </Popup>
-                </Polygon>
-            );
-        });
-
         return (
             <div className="gr-map--wrapper container-fluid">
                 <Map
@@ -57,12 +37,14 @@ export default class MapContainer extends React.Component {
                         url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
                         attribution="&copy; <a href='http://osm.org/copyright'>OpenStreetMap</a> contributors"
                     />
-                    <Polygon positions={positions}>
+                    <Marker position={position}>
                         <Popup>
-                            <span>{this.map.name}<br />{this.map.description}</span>
+                            <span>A pretty CSS3 popup.<br/>Easily customizable.</span>
                         </Popup>
-                        {pointsMap}
-                    </Polygon>
+                    </Marker>
+                    <Polygon
+                        positions={positions}
+                    />
                 </Map>
             </div>
         );
