@@ -16,6 +16,7 @@ import {
 import PlaceMap from './place_map';
 import AddPlace from './add_place';
 import Maps from './Maps';
+
 const interestingRegions = [
   {
     title: "Humanities and Social Sciences Building",
@@ -131,7 +132,7 @@ export default class Places extends Component {
           selected={this.state.selectedTab === 1}
           onPress={this.handleTabPress.bind(this,1)}
         >
-          <Maps />
+          // <Maps />
         </TabBarIOS.Item>
         <TabBarIOS.Item
           title="Place   "

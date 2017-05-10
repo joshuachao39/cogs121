@@ -19,16 +19,16 @@ export default class Maps extends Component {
   data = mapsData.parse(text);
   list = data.name;
   render(){
-    return{
+    return (
       <View>
         <Text>Hello</Text>
       </View>
-    };
+    );
   }
 }
 
 const styles = StyleSheet.create({
-  view: {
+  View: {
     backgroundColor: '#fed',
     flex: 1
   },

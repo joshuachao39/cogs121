@@ -87,4 +87,54 @@ export const mapsData = [
             },
         ],
     },
+    {
+        id: 2, // Should reflect index of array
+        type: MAP_EVENT,
+        name: 'Cogs 121',
+        description: 'UC San Diegos best class',
+        coords: {
+            // Denotes the coordinates to center the map on
+            latitude: 32.878461,
+            longitude: -117.241389,
+        },
+        // Denotes default amount to zoom the map at
+        defaultZoom: 0.2,
+        boundary: {
+            // Boundary is a list of points enclosing the polygon
+            // Contains a list of latitude and longitude
+            points: [
+                { latitude: 32.878654, longitude: -117.241582 },
+                { latitude: 32.878598, longitude: -117.241327 },
+                { latitude: 32.878393, longitude: -117.241319 },
+                { latitude: 32.878395, longitude: -117.241453 },
+                { latitude: 32.878483, longitude: -117.241456 },
+                { latitude: 32.878494, longitude: -117.241574 },
+            ],
+        },
+        points: [
+            // Points specify points of interest
+            {
+                name: 'Classroom',
+                boundary: {
+                    points: [
+                        { latitude: 32.878483, longitude: -117.241453 },
+                        { latitude: 32.878488, longitude: -117.241323 },
+                        { latitude: 32.878396, longitude: -117.241315 },
+                        { latitude: 32.878398, longitude: -117.241450 },
+                    ],
+                },
+            },
+            {
+                name: 'Study Space',
+                boundary: {
+                    points: [
+                        { latitude: 32.878398, longitude: -117.241450 },
+                        { latitude: 32.878605, longitude: -117.241459 },
+                        { latitude: 32.878491, longitude: -117.241458 },
+                        { latitude: 32.878489, longitude: -117.241573 },
+                    ],
+                },
+            },
+        ],
+    },
 ];
