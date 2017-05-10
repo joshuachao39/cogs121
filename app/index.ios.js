@@ -132,7 +132,7 @@ export default class Places extends Component {
           selected={this.state.selectedTab === 1}
           onPress={this.handleTabPress.bind(this,1)}
         >
-          // <Maps />
+          <Maps />
         </TabBarIOS.Item>
         <TabBarIOS.Item
           title="Place   "

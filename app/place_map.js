@@ -36,8 +36,8 @@ export default class PlaceMap extends Component {
     this.initialRegion = {
       latitude: 32.885231,
       longitude: -117.239119,
-      latitudeDelta: 0.002,
-      longitudeDelta: 0.002,
+      latitudeDelta: 0.02,
+      longitudeDelta: 0.02,
       title: "RIMAC",
     };
 
@@ -74,7 +74,13 @@ export default class PlaceMap extends Component {
       );
     });
 
-    const interests = mapsData[0].points.map((elem)=>{
+    const interestsSD = mapsData[0].points.map((elem)=>{
+      const coords = elem.boundary.points;
+      return (<Polygon coordinates={coords} strokeColor={'rgba(17,205,134,0.5)'}
+      fillColor={'rgba(17,205,134,0.5)'} />);
+    });
+
+    const interestsCgs121 = mapsData[2].points.map((elem)=>{
       const coords = elem.boundary.points;
       return (<Polygon coordinates={coords} strokeColor={'rgba(17,205,134,0.5)'}
       fillColor={'rgba(17,205,134,0.5)'} />);
@@ -88,7 +94,9 @@ export default class PlaceMap extends Component {
           onRegionChange={this.onRegionChange}
           >
           <Polygon coordinates={mapsData[0].boundary.points}/>
-          {interests}
+          {interestsSD}
+          <Polygon coordinates={mapsData[2].boundary.points}/>
+          {interestsCgs121}
           </MapView>
           {/*annotations={annotations}*/}
           {/*}//showsUserLocation={true}*/}
