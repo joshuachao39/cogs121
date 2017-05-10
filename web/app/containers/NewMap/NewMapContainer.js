@@ -1,4 +1,5 @@
 import React from 'react';
+// import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import * as actions from '../../actions';
@@ -174,8 +175,9 @@ class NewMapContainer extends React.Component {
     }
 }
 
-function mapStateToProps(state) {
-    return state;
-}
+// function mapDispatchToProps(dispatch) {
+//   let actions = bindActionCreators({ getApplications });
+//   return { ...actions, dispatch };
+// }
 
-export default connect(mapStateToProps, actions)(NewMapContainer);
+export default connect()(NewMapContainer);

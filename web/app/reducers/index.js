@@ -31,21 +31,31 @@ const filter = (state = '', action) => {
 
 const maps = (state = mapsData, action) => {
     switch (action.type) {
-        // case types.INIT_MAPS:
-        //     return {
-        //         ...state,
-        //         ...mapsData,
-        //     };
-        case types.ADD_MAP:
-            const newMap = action.data;
+        case types.INIT_MAPS:
             return {
                 ...state,
-                maps: [
-                    ...state.maps,
-                    newMap,
-                ],
+                ...mapsData,
             };
+        case types.ADD_MAP:
+            console.log('Adding a map reducer');
+            console.log(state.maps);
+            const currMaps = (state.maps) ? [...state.maps] : mapsData;
+            const newMap = {
+                ...action.payload,
+                id: currMaps.length, // New id
+            };
+            // TEMPORARY fix
+            mapsData.push(newMap);
+            console.log([
+                ...currMaps,
+                newMap,
+            ]);
+            return [
+                ...currMaps,
+                newMap,
+            ];
         default:
+            console.log('Reducer default state reached');
             return state;
     }
 };

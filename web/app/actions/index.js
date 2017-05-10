@@ -51,9 +51,10 @@ export function filterTable(filter) {
 // }
 
 export function addMap(newMap) {
+    console.log('Action addMap called');
     return {
         type: types.ADD_MAP,
-        newMap,
+        payload: newMap,
     };
 }
 
