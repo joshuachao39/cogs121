@@ -24,12 +24,12 @@ const interestingRegions = [
   },
   {
     title: "Geisel Library",
-    latitude: 32.881174, 
+    latitude: 32.881174,
     longitude: -117.237453,
   },
   {
     title: "Price Center Theater",
-    latitude: 32.879912, 
+    latitude: 32.879912,
     longitude: -117.237110,
   },
   {
@@ -102,10 +102,10 @@ export default class Places extends Component {
         //   longitude: -77.0687
         // }
       // ],
->>>>>>> ecd262c7e4ca83bd4a1f6480f161fd51a6b17832
+
     };
   }
-  
+
   handleAddPlace(annotation) {
     const annotations = this.state.annotations.slice();
     annotations.push(annotation);

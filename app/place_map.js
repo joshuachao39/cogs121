@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import {
-  MapView,
   Linking,
   View,
   StyleSheet,
   Text,
   TouchableHighlight,
 } from 'react-native';
+
+//airbnb map
+var MapView = require('react-native-maps');
 
 export default class PlaceMap extends Component {
   constructor(props) {
@@ -62,10 +64,11 @@ export default class PlaceMap extends Component {
       <View style={styles.view}>
         <MapView
           style={styles.map}
-          region={this.region}
-          annotations={annotations}
-          showsUserLocation={true}
+          initialRegion={this.region}
         />
+          {/*annotations={annotations}*/}
+          {/*}//showsUserLocation={true}*/}
+
       </View>
     );
   }

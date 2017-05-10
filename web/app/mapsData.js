@@ -81,11 +81,11 @@ export const mapsData = [
         },
         points: [
             // Points specify points of interest
-            // {
-            //     name: 'Help Table',
-            //     boundary: [
-            //     ],
-            // },
+            {
+                name: 'Help Table',
+                boundary: [
+                ],
+            },
         ],
     },
 ];
