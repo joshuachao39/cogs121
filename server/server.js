@@ -45,22 +45,9 @@ router.route('/maps/new')
         res.send(err);
 
       console.log("Reached 48");
-      res.json({message: 'Map created!' });
+      res.json({ message: 'Map created!' });
     });
   });
-
-router.route('/maps')
-
-  .get(function(req, res) {
-
-    Map.find(function(err, maps) {
-      if (err)
-        res.send(err);
-
-      res.json(maps);
-    });
-  });
-
 
 app.use('/', router);
 

@@ -4,7 +4,6 @@ var mongoose     = require('mongoose');
 var Schema       = mongoose.Schema;
 
 var MapSchema   = new Schema({
-  id: Schema.ObjectId,
   name: String,
   description: String
 });
