@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import * as actions from '../../actions';
 
+import NameTypeFields from './NameTypeFields';
 import LocationFields from './LocationFields';
 import DrawBoundaryFields from './DrawBoundaryFields';
 import PointsOfInterestFields from './PointsOfInterestFields';
@@ -25,11 +26,13 @@ class NewMapContainer extends React.Component {
         super(props);
 
         this.state = {
-            step: 1,
+            step: 0,
             newMap: {},
+            init: false,
         };
 
         this.handleInit = this.handleInit.bind(this);
+        this.handleLocation = this.handleLocation.bind(this);
         this.handleBoundaries = this.handleBoundaries.bind(this);
         this.handlePoints = this.handlePoints.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -39,19 +42,40 @@ class NewMapContainer extends React.Component {
     }
 
     /**
-     * Handles initialization (name, description, coords) of the map)
+     * Handles init (name, description, type) of the map
+     * and initializes other fields to default values
      */
-    handleInit(type, name, description, coords) {
+    handleInit(name, description, type) {
         this.setState({
             newMap: {
                 ...this.state.newMap,
-                type,
                 name,
                 description,
+                type,
+            },
+        });
+        // On initialization set values to default
+        if (!this.state.init) {
+            this.setState({
+                newMap: {
+                    ...this.state.newMap,
+                    defaultZoom: 0.2,
+                    boundary: {},
+                    points: [],
+                },
+                init: true,
+            });
+        }
+    }
+
+    /**
+     * Handles location finding (coords) of the map
+     */
+    handleLocation(coords) {
+        this.setState({
+            newMap: {
+                ...this.state.newMap,
                 coords,
-                defaultZoom: 0.2,
-                boundary: {},
-                points: [],
             }
         });
         console.log(this.state.newMap);
@@ -100,12 +124,10 @@ class NewMapContainer extends React.Component {
      */
     handleSubmit() {
         console.log(this.state.newMap);
-        console.log('Submitting');
         this.props.dispatch(actions.addMap(this.state.newMap)); // eslint-disable-line
     }
 
     nextStep() {
-        console.log('Moving to next step');
         if (this.state.step === endState) {
             // Finalize (send the post request here)
         } else {
@@ -116,8 +138,7 @@ class NewMapContainer extends React.Component {
     }
 
     prevStep() {
-        console.log('Moving to previous step');
-        if (this.state.step === 1) {
+        if (this.state.step === 0) {
             // Return to previous page
         } else {
             this.setState({
@@ -128,10 +149,19 @@ class NewMapContainer extends React.Component {
 
     render() {
         switch (this.state.step) {
+            case 0: {
+                return (
+                    <NameTypeFields
+                        handleInit={this.handleInit}
+                        nextStep={this.nextStep}
+                        prevStep={this.prevStep}
+                    />
+                );
+            }
             case 1: {
                 return (
                     <LocationFields
-                        handleInit={this.handleInit}
+                        handleLocation={this.handleLocation}
                         nextStep={this.nextStep}
                         prevStep={this.prevStep}
                     />

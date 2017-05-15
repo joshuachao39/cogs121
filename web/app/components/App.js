@@ -26,8 +26,9 @@ const App = ({ children }) =>
               </ul>
             </div>
         </nav>
-        <h1>Guorient</h1>
-        { children }
+        <div className="container">
+            { children }
+        </div>
         <footer className={footer}>
             <Link to="/">Maps</Link>
             <Link to="/about">About</Link>

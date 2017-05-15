@@ -17,7 +17,6 @@ export default class LocationFields extends React.Component {
         super(props);
 
         this.state = {
-            mapName: 'New Map',
             locationName: 'San Francisco',
             position: {
                 lat: 37.772607,
@@ -25,7 +24,6 @@ export default class LocationFields extends React.Component {
             },
         };
 
-        this.changeName = this.changeName.bind(this);
         this.changeLocationName = this.changeLocationName.bind(this);
         this.handleDrag = this.handleDrag.bind(this);
 
@@ -37,12 +35,6 @@ export default class LocationFields extends React.Component {
     handleDrag(e) {
         this.setState({
             position: e.target.options.center,
-        });
-    }
-
-    changeName(e) {
-        this.setState({
-            mapName: e.target.value,
         });
     }
 
@@ -81,15 +73,6 @@ export default class LocationFields extends React.Component {
         return (
             <div className="gr-wrapper container-fluid">
                 <div className="form-group">
-                    <label htmlFor="mapName">Name</label>
-                    <input
-                      className="gr-map--form-control form-control"
-                      type="text"
-                      name="mapName"
-                      id="mapName"
-                      value={this.state.mapName}
-                      onChange={this.changeName}
-                    />
                     <label htmlFor="locationName">Location</label>
                     <input
                       className="gr-map--form-control form-control"
