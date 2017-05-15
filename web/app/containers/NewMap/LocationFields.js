@@ -146,5 +146,5 @@ LocationFields.propTypes = {
 
 export default GoogleMapLoader(LocationFields, {
     libraries: ['places'],
-    key: '',
+    key: 'AIzaSyAA5q_szpvD8hf-pAtAN52J7goZ81Q-d2c',
 });
