@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 import App from './components/App';
 import FilterableTable from './containers/FilterableTable';
-import NewMapContainer from './containers/NewMapContainer';
+import NewMapContainer from './containers/NewMap/NewMapContainer';
 import MapContainer from './containers/MapContainer';
 import About from './components/About';
 
