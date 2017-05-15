@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import { footer } from '../styles/footer.scss';
+import { styles } from '../styles/styles.scss';
 
 const App = ({ children }) =>
     <div>
@@ -26,8 +27,12 @@ const App = ({ children }) =>
               </ul>
             </div>
         </nav>
-        <h1>Guorient</h1>
-        { children }
+
+        <body className={styles}>
+            <h1>Guorient</h1>
+            { children }
+        </body>
+
         <footer className={footer}>
             <Link to="/">Maps</Link>
             <Link to="/about">About</Link>
