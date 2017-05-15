@@ -1,4 +1,4 @@
-## Milestone 10
+## Milestone 10: Hielmeir's Catechism
 
 ### What are you trying to do? Articulate your objectives using absolutely no jargon.
 
