@@ -2,6 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Map, TileLayer } from 'react-leaflet';
 import { MAP_EVENT } from '../../components/MapTileTypes';
+import GoogleMapLoader from 'react-google-maps-loader';
+import GooglePlacesSuggest from 'react-google-places-suggest';
+import 'react-google-places-suggest/lib/index.css';
 
 // Seed some locations for the demo
 const seededLocations = { // eslint-disable-line
@@ -12,7 +15,7 @@ const seededLocations = { // eslint-disable-line
 };
 
 // TODO: add redux state updating to this
-export default class LocationFields extends React.Component {
+class LocationFields extends React.Component {
     constructor(props) {
         super(props);
 
@@ -22,11 +25,15 @@ export default class LocationFields extends React.Component {
                 lat: 37.772607,
                 lng: -122.435886,
             },
+            search: '',
+            selectedCoordinate: null,
         };
 
         this.changeLocationName = this.changeLocationName.bind(this);
         this.handleDrag = this.handleDrag.bind(this);
 
+        this.handleSearchChange = this.handleSearchChange.bind(this);
+        this.handleSelectSuggest = this.handleSelectSuggest.bind(this);
         this.validateAndPrevious = this.validateAndPrevious.bind(this);
         this.validateAndNext = this.validateAndNext.bind(this);
         this.validate = this.validate.bind(this);
@@ -53,6 +60,14 @@ export default class LocationFields extends React.Component {
         return true;
     }
 
+    handleSearchChange(e) {
+        this.setState({search: e.target.value});
+    }
+
+    handleSelectSuggest(suggest, coordinate) {
+        this.setState({search: suggest.description, selectedCoordinate: coordinate});
+    }
+
     validateAndPrevious() {
         if (this.validate()) {
             this.props.handleInit(MAP_EVENT, this.state.mapName, this.state.locationName, this.state.position);
@@ -68,20 +83,24 @@ export default class LocationFields extends React.Component {
     }
 
     render() {
-        const { position } = this.state;
+        const { position, search } = this.state;
+        const { googleMaps } = this.props;
 
         return (
             <div className="gr-wrapper container-fluid">
                 <div className="form-group">
-                    <label htmlFor="locationName">Location</label>
-                    <input
-                      className="gr-map--form-control form-control"
-                      type="text"
-                      name="mapLocation"
-                      id="mapLocation"
-                      value={this.state.locationName}
-                      onChange={this.changeLocationName}
-                    />
+                    <GooglePlacesSuggest
+                        googleMaps={googleMaps}
+                        onSelectSuggest={this.handleSelectSuggest}
+                        search={search}
+                    >
+                        <input
+                            type="text"
+                            value={search }
+                            placeholder="Search a location"
+                            onChange={this.handleSearchChange}
+                        />
+                    </GooglePlacesSuggest>
                 </div>
                 <div className="gr-map--wrapper">
                     <Map
@@ -122,4 +141,10 @@ LocationFields.propTypes = {
     nextStep: PropTypes.func,
     prevStep: PropTypes.func,
     handleInit: PropTypes.func,
+    googleMaps: PropTypes.object,
 };
+
+export default GoogleMapLoader(LocationFields, {
+    libraries: ['places'],
+    key: '',
+});
