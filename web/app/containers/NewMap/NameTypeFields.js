@@ -97,12 +97,16 @@ export default class NameTypeFields extends React.Component {
                       value={this.state.description}
                       onChange={this.changeType}
                     />
+                    <div className="ag-input--title">Select type of event</div>
                     <div
-                        className="row"
+                        className="row ag-input--cards"
                         onChange={this.changeType}
                     >
-                        <div className="col-md-3">
-                            <label htmlFor="type-conference">
+                        <div className="col-md-3 ag-input--card">
+                            <label
+                                htmlFor="type-conference"
+                                className={(this.state.type === 'conference') ? 'selected' : ''}
+                            >
                                 <input
                                     type="radio"
                                     value="conference"
@@ -117,8 +121,11 @@ export default class NameTypeFields extends React.Component {
                                 </div>
                             </label>
                         </div>
-                        <div className="col-md-3">
-                            <label htmlFor="type-family">
+                        <div className="col-md-3 ag-input--card">
+                            <label
+                                htmlFor="type-family"
+                                className={(this.state.type === 'family') ? 'selected' : ''}
+                            >
                                 <input
                                     type="radio"
                                     value="family"
@@ -133,8 +140,11 @@ export default class NameTypeFields extends React.Component {
                                 </div>
                             </label>
                         </div>
-                        <div className="col-md-3">
-                            <label htmlFor="type-party">
+                        <div className="col-md-3 ag-input--card">
+                            <label
+                                htmlFor="type-party"
+                                className={(this.state.type === 'party') ? 'selected' : ''}
+                            >
                                 <input
                                     type="radio"
                                     value="party"
@@ -149,8 +159,11 @@ export default class NameTypeFields extends React.Component {
                                 </div>
                             </label>
                         </div>
-                        <div className="col-md-3">
-                            <label htmlFor="type-golf">
+                        <div className="col-md-3 ag-input--card">
+                            <label
+                                htmlFor="type-golf"
+                                className={(this.state.type === 'golf') ? 'selected' : ''}
+                            >
                                 <input
                                     type="radio"
                                     value="golf"

@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Map, TileLayer } from 'react-leaflet';
-import { MAP_EVENT } from '../../components/MapTileTypes';
 import GoogleMapLoader from 'react-google-maps-loader';
 import GooglePlacesSuggest from 'react-google-places-suggest';
 import 'react-google-places-suggest/lib/index.css';
@@ -70,14 +69,14 @@ class LocationFields extends React.Component {
 
     validateAndPrevious() {
         if (this.validate()) {
-            this.props.handleInit(MAP_EVENT, this.state.mapName, this.state.locationName, this.state.position);
+            this.props.handleLocation(this.state.locationName, this.state.position);
             this.props.prevStep();
         }
     }
 
     validateAndNext() {
         if (this.validate()) {
-            this.props.handleInit(MAP_EVENT, this.state.mapName, this.state.locationName, this.state.position);
+            this.props.handleLocation(this.state.locationName, this.state.position);
             this.props.nextStep();
         }
     }
@@ -87,7 +86,7 @@ class LocationFields extends React.Component {
         const { googleMaps } = this.props;
 
         return (
-            <div className="gr-wrapper container-fluid">
+            <div className="gr-wrapper">
                 <div className="form-group">
                     <GooglePlacesSuggest
                         googleMaps={googleMaps}
@@ -95,8 +94,9 @@ class LocationFields extends React.Component {
                         search={search}
                     >
                         <input
+                            className="form-control"
                             type="text"
-                            value={search }
+                            value={search}
                             placeholder="Search a location"
                             onChange={this.handleSearchChange}
                         />
@@ -140,7 +140,7 @@ class LocationFields extends React.Component {
 LocationFields.propTypes = {
     nextStep: PropTypes.func,
     prevStep: PropTypes.func,
-    handleInit: PropTypes.func,
+    handleLocation: PropTypes.func,
     googleMaps: PropTypes.object,
 };
 
