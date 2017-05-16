@@ -48,11 +48,6 @@ class LocationFields extends React.Component {
         this.setState({
             locationName: e.target.value,
         });
-
-        // TODO: on selection of a location from dropdown, center
-        // map on this location and update this.state.position
-
-        // TODO: or use coordinates to search
     }
 
     validate() {
@@ -64,7 +59,16 @@ class LocationFields extends React.Component {
     }
 
     handleSelectSuggest(suggest, coordinate) {
-        this.setState({search: suggest.description, selectedCoordinate: coordinate});
+        // TODO: fix coordinate on drag after search
+        console.log(coordinate);
+        const position = {
+            lat: coordinate.latitude,
+            lng: coordinate.longitude,
+        };
+        this.setState({
+            search: suggest.description,
+            position,
+        });
     }
 
     validateAndPrevious() {

@@ -41,6 +41,7 @@ export default class DrawBoundaryFields extends React.Component {
         if (this.validate()) {
             this.props.nextStep();
         } else {
+            // TODO: Log an error here
             console.log('Boundary not created');
         }
     }
