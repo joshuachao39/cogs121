@@ -27,15 +27,17 @@ export default class Maps extends Component {
 
     const mapList =  mapsData.map(function(elem){
       return (
-      <TouchableHighlight style={styles.TouchableHighlight}
-      /*onPress={/*some linking function}*/>
+      <TouchableHighlight
+        style={styles.TouchableHighlight}
+        key={elem.name}
+        /*onPress={/*some linking function}*/
+      >
         <Text>{elem.name}</Text>
       </TouchableHighlight>);
     });
 
     return (
       <View style={styles.view}>
-        <TouchableHighlight /*onPress={/*some linking function}*/>
         {mapList}
       </View>
     );
