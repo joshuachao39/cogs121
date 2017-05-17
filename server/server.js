@@ -26,28 +26,28 @@ router.use(function(req, res, next) {
 });
 
 router.get('/', function(req, res) {
-      res.json({ message: 'hooray! welcome to our api!' });   
+  res.json({ message: 'hooray! welcome to our api!' });   
 });
 
 // more routes for our API will happen here
 router.route('/maps/new')
 
-  .post(function(req, res) {
+.post(function(req, res) {
 
-    var map = new Map();
-    console.log("Reached 38");
+  var map = new Map();
+  console.log("Reached 38");
 
-    map.name = req.body.name;
-    map.description = req.body.description;
+  map.name = req.body.name;
+  map.description = req.body.description;
 
-    map.save(function(err) {
-      if (err)
-        res.send(err);
+  map.save(function(err) {
+    if (err)
+      res.send(err);
 
-      console.log("Reached 48");
-      res.json({ message: 'Map created!' });
-    });
+    console.log("Reached 48");
+    res.json({ message: 'Map created!' });
   });
+});
 
 app.use('/', router);
 
@@ -57,7 +57,15 @@ app.use('/', router);
 app.listen(port);
 console.log('Magic happens on port ' + port);
 
+var uri = "mongodb://rdhanaraj:mangobunny@cluster0-shard-00-00-dssu2.mongodb.net:27017,cluster0-shard-00-01-dssu2.mongodb.net:27017,cluster0-shard-00-02-dssu2.mongodb.net:27017/guorient?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin";
+
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://<rdhanaraj>:<[lab]50Fiefs>@ds137801.mlab.com:37801/guorient');
+mongoose.connect(uri, function (err, res) {
+  if (err) {
+    console.log ('ERROR connecting to: ' + uri + '. ' + err);
+  } else {
+    console.log ('Succeeded connected to: ' + uri);
+  }
+});
 
 var Map = require('./app/models/Map');
