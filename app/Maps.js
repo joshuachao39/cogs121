@@ -7,25 +7,45 @@ import {
   TouchableHighlight,
 } from 'react-native';
 
-import { mapsData } from './mapsData';
-
 export default class Maps extends Component {
   constructor(props){
     super(props);
     this.state = {
-      name: []
+      name: [],
+      loading: true,
     };
+
+    this.getMaps = this.getMaps.bind(this);
   }
 
+  componentWillMount() {
+    this.getMaps();
+  }
 
-  // data =mapsData.parse(text);
-  // list = data.name;
-  render(){
-    //  use arraylist to visualize all data entries
-    //   //generate different object each time
-    // }
+  getMaps() {
+    const _this = this;
 
-    const mapList =  mapsData.map(function(elem){
+    fetch('http://localhost:8000/maps')
+      .then((res) => {
+        _this.setState({ 
+          loading: false,
+          maps: JSON.parse(res._bodyText),
+        });
+        return JSON.parse(res._bodyText);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+
+  render() {
+    if (this.state.loading) {
+      return <Text>Loading...</Text>
+    }
+
+    const { maps } = this.state;
+
+    const mapList = maps.map(function(elem){
       return (
       <TouchableHighlight
         style={styles.TouchableHighlight}

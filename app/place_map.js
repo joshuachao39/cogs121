@@ -69,21 +69,35 @@ export default class PlaceMap extends Component {
           style={styles.button}
           onPress={this.handleNavigation.bind(this, annotation.latitude, annotation.longitude)}
         >
-          <Text style={styles.buttonText}>Navigation</Text>
+          <Text style={styles.buttonText}>
+            Navigation
+          </Text>
         </TouchableHighlight>
       );
     });
 
     const interestsSD = mapsData[0].points.map((elem)=>{
       const coords = elem.boundary.points;
-      return (<Polygon coordinates={coords} strokeColor={'rgba(17,205,134,0.5)'}
-      fillColor={'rgba(17,205,134,0.5)'} />);
+      return (
+        <Polygon
+          key={JSON.stringify(coords)}
+          coordinates={coords}
+          strokeColor={'rgba(17,205,134,0.5)'}
+          fillColor={'rgba(17,205,134,0.5)'}
+        />
+      );
     });
 
     const interestsCgs121 = mapsData[2].points.map((elem)=>{
       const coords = elem.boundary.points;
-      return (<Polygon coordinates={coords} strokeColor={'rgba(17,205,134,0.5)'}
-      fillColor={'rgba(17,205,134,0.5)'} />);
+      return (
+        <Polygon
+          key={JSON.stringify(coords)}
+          coordinates={coords}
+          strokeColor={'rgba(17,205,134,0.5)'}
+          fillColor={'rgba(17,205,134,0.5)'}
+        />
+      );
     });
 
     return (
@@ -93,14 +107,17 @@ export default class PlaceMap extends Component {
           initialRegion= {this.initialRegion}
           onRegionChange={this.onRegionChange}
           >
-          <Polygon coordinates={mapsData[0].boundary.points}/>
+          <Polygon
+            coordinates={mapsData[0].boundary.points}
+          />
           {interestsSD}
-          <Polygon coordinates={mapsData[2].boundary.points}/>
+          <Polygon
+            coordinates={mapsData[2].boundary.points}
+          />
           {interestsCgs121}
-          </MapView>
+        </MapView>
           {/*annotations={annotations}*/}
           {/*}//showsUserLocation={true}*/}
-
       </View>
     );
   }
