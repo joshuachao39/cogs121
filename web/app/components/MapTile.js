@@ -9,10 +9,14 @@ const MapTile = ({ data }) => {
     const name = (data.type === MAP_EVENT) ? data.name : 'New';
     const description = (data.type === MAP_EVENT) ? data.description : 'Create a new map';
 
+    const divStyle = {
+        marginTop: 20
+    };
+
     return (
         <div className={mapTile}>
             <Link to={`/maps/${id}`}>
-                <div className="gr-card card">
+                <div className="gr-card card" style={divStyle}>
                     <img
                         className="card-img-top"
                         src="http://lorempixel.com/g/400/200"
