@@ -41,6 +41,7 @@ export default class DrawBoundaryFields extends React.Component {
         if (this.validate()) {
             this.props.nextStep();
         } else {
+            // TODO: Log an error here
             console.log('Boundary not created');
         }
     }
@@ -60,7 +61,7 @@ export default class DrawBoundaryFields extends React.Component {
         const { position } = this.props;
 
         return (
-            <div className="gr-wrapper container-fluid">
+            <div className="gr-wrapper">
                 <h4>Draw the boundary of your venue</h4>
                 <div className="gr-map--wrapper">
                     <Map
@@ -85,7 +86,7 @@ export default class DrawBoundaryFields extends React.Component {
                                     marker: false,
                                     circle: false,
                                     rectangle: false,
-                                    line: false,
+                                    polyline: false,
                                 }}
                             />
                         </FeatureGroup>
