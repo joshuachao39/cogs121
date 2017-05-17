@@ -75,12 +75,12 @@ class MapContainer extends React.Component {
 MapContainer.propTypes = {
     mapName: PropTypes.string,
     params: PropTypes.object,
-    maps: PropTypes.maps,
+    maps: PropTypes.array,
 };
 
 function mapStateToProps(state) {
     return {
-        maps: state.maps,
+        maps: state.maps.maps,
     };
 }
 

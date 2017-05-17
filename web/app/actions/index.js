@@ -59,8 +59,9 @@ export function addMap(newMap) {
 }
 
 // Initializes all the maps from mapData
-export function initMaps() {
-    return {
-        type: types.INIT_MAPS,
-    };
-}
+// export function initMaps(maps) {
+//     return {
+//         type: types.INIT_MAPS,
+//         payload: maps,
+//     };
+// }

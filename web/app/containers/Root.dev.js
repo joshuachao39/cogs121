@@ -3,10 +3,11 @@ import { Provider } from 'react-redux';
 // import DevTools from './DevTools';
 import { Router } from 'react-router';
 import routes from '../routes';
+import { store } from '../reducers';
 
 export default class Root extends Component {
     render() {
-        const { store, history } = this.props;
+        const { history } = this.props;
         return (
             <Provider store={store}>
                 <div>
@@ -19,6 +20,5 @@ export default class Root extends Component {
 }
 
 Root.propTypes = {
-    store: PropTypes.object.isRequired,
     history: PropTypes.object.isRequired
 };

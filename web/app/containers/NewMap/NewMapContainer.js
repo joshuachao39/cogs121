@@ -28,7 +28,11 @@ class NewMapContainer extends React.Component {
 
         this.state = {
             step: 0,
-            newMap: {},
+            newMap: {
+                defaultZoom: 0.2,
+                boundary: {},
+                points: [],
+            },
             init: false,
         };
 
@@ -46,27 +50,16 @@ class NewMapContainer extends React.Component {
      * Handles init (name, description, type) of the map
      * and initializes other fields to default values
      */
-    handleInit(name, description, type) {
+    handleInit(name, description, type) { // eslint-disable-line
         this.setState({
             newMap: {
                 ...this.state.newMap,
                 name,
                 description,
-                type,
+                type: 'MAP_EVENT',
             },
         });
-        // On initialization set values to default
-        if (!this.state.init) {
-            this.setState({
-                newMap: {
-                    ...this.state.newMap,
-                    defaultZoom: 0.2,
-                    boundary: {},
-                    points: [],
-                },
-                init: true,
-            });
-        }
+        console.log(this.state.newMap);
     }
 
     /**

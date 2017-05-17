@@ -7,7 +7,7 @@ import {
   TouchableHighlight,
 } from 'react-native';
 
-import {mapsData} from './mapsData';
+import { mapsData } from './mapsData';
 
 export default class Maps extends Component {
   constructor(props){
