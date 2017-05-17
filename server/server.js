@@ -2,7 +2,9 @@
 
 var MAP_EVENT = 'MAP_EVENT';
 
-var mapsData = [
+var mapsData = [];
+
+var mapsInventory = [
 {
   id: 0, // Should reflect index of array
   type: MAP_EVENT,
@@ -89,6 +91,7 @@ var mapsData = [
 },
 ];
 
+mapsData.push(mapsInventory[0], mapsInventory[1]);
 
 // BASE SETUP
 // =============================================================================
