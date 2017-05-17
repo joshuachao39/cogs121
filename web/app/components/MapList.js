@@ -6,7 +6,7 @@ import * as actions from '../actions';
 
 import MapTile from './MapTile';
 import { MAP_NEW } from './MapTileTypes';
-
+import { mapList } from '../styles/mapList.scss';
 
 const propTypes = {
     filter: PropTypes.string,
@@ -16,8 +16,13 @@ const propTypes = {
 class MapList extends React.Component {
     render() {
         let rows = [];
+        let newrow = [];
 
         const { maps, filter } = this.props;
+
+        newrow.push(
+          <MapTile key={'new'} data={{ type: MAP_NEW }} />
+        );
 
         maps.forEach((elem) => {
             const nameLC = elem.name.toLowerCase();
@@ -30,13 +35,14 @@ class MapList extends React.Component {
             }
         });
 
-        rows.push(
-          <MapTile key={'new'} data={{ type: MAP_NEW }} />
-        );
-
         return (
-            <div className="row">
-                {rows}
+            <div className={mapList}>
+                <div id="newrow">
+                    {newrow}
+                </div>
+                <div id="row">
+                    {rows}
+                </div>
             </div>
         );
     }

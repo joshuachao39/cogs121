@@ -8,11 +8,14 @@ const FilterableTable = ({ filter, onFilter }) => {
 
     return (
         <div>
-            <input
-                value={filter}
-                ref={node => {input = node;}}
-                onChange={() => onFilter(input.value)}
-            />
+            <label>
+                Search for an event:&nbsp;
+                <input
+                    value={filter}
+                    ref={node => {input = node;}}
+                    onChange={() => onFilter(input.value)}
+                />
+            </label>
             <MapList filter={filter} />
         </div>
     );

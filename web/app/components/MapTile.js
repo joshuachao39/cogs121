@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 
 import { MAP_EVENT } from './MapTileTypes';
+import { mapTile } from '../styles/mapTile.scss';
 
 const MapTile = ({ data }) => {
     const id = (data.type === MAP_EVENT) ? data.id : 'New';
@@ -9,7 +10,7 @@ const MapTile = ({ data }) => {
     const description = (data.type === MAP_EVENT) ? data.description : 'Create a new map';
 
     return (
-        <div className="col-md-4">
+        <div className={mapTile}>
             <Link to={`/maps/${id}`}>
                 <div className="gr-card card">
                     <img
