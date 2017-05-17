@@ -69,6 +69,9 @@ export default class NameTypeFields extends React.Component {
     }
 
     validateAndNext() {
+        console.log(this.state.mapName);
+        console.log(this.state.description);
+        console.log(this.state.type);
         if (this.validate()) {
             this.props.handleInit(this.state.mapName, this.state.description, this.state.type);
             this.props.nextStep();

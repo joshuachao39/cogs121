@@ -145,6 +145,14 @@ router.route('/maps/:map_id')
 app.use('/', router);
 
 
+router.route('/maps/new')
+  .post(function(req, res) {
+    console.log(req.body);
+    mapsData.push(req.body);
+    console.log(mapsData);
+    res.send('wooo');
+  });
+
 // START THE SERVER
 // =============================================================================
 app.listen(port);
