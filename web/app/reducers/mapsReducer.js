@@ -4,10 +4,9 @@ import axios from 'axios';
 const mapsReducer = (state, action) => {
     switch (action.type) {
         case types.INIT_MAPS:
-            console.log('init maps called');
             return {
                 ...state,
-                maps: action.payload,
+                maps: action.payload.data,
             };
         case types.ADD_MAP:
             console.log('Adding a map reducer');
@@ -20,7 +19,7 @@ const mapsReducer = (state, action) => {
             // TEMPORARY fix
             // Make axios request here
             // mapsData.push(newMap);
-            axios.post('http://localhost:3000/maps/new', newMap)
+            axios.post('http://localhost:8000/maps/new', newMap)
                 .then(function() {
                     console.log('Updated backend with map');
                 })
@@ -29,7 +28,7 @@ const mapsReducer = (state, action) => {
                 });
 
             return [
-                ...currMaps,
+                ...state,
                 newMap,
             ];
         default:

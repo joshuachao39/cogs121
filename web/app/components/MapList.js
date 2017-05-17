@@ -10,7 +10,7 @@ import { MAP_NEW } from './MapTileTypes';
 
 const propTypes = {
     filter: PropTypes.string,
-    maps: PropTypes.object,
+    maps: PropTypes.array,
 };
 
 class MapList extends React.Component {
@@ -24,9 +24,16 @@ class MapList extends React.Component {
           <MapTile key={'new'} data={{ type: MAP_NEW }} />
         );
 
-        if (!maps.data) {
+        console.log('woohoo');
+
+        console.log(maps);
+
+        if (!maps) {
             return (
                 <div>
+                    <div id="newrow">
+                        {newrow}
+                    </div>
                     No maps to show
                 </div>
             );
@@ -60,7 +67,7 @@ MapList.propTypes = propTypes;
 
 function mapStateToProps(state) {
     return {
-        maps: state.maps,
+        maps: state.maps.maps,
     };
 }
 

@@ -21,9 +21,13 @@ store.subscribe(() => {
 });
 
 function initMaps(mapsData) {
+    // console.log('init maps data');
+    // console.log(mapsData);
     store.dispatch({
         type: types.INIT_MAPS,
-        payload: mapsData,
+        payload: {
+            data: mapsData,
+        }
     });
 }
 
