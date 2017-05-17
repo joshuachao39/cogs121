@@ -1,4 +1,4 @@
-# Milestone 9: Rest of your app UI (1 of 2)
+# Milestone 11: Rest of your app UI (1 of 2)
 
 ### Description of what each team member has done so far
 
