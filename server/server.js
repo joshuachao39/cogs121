@@ -130,6 +130,11 @@ router.route('/maps/:map_id')
 
   .get(function(req, res) {
     res.json(mapsData[req.params.map_id]);
+  })
+
+  .delete(function(req, res) {
+    mapsData.splice(Number(req.params.map_id), 1);
+    res.json({ message: 'entry deleted' });   
   });
 
 app.use('/', router);
