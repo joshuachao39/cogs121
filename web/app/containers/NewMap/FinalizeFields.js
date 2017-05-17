@@ -37,7 +37,7 @@ export default class FinalizeFields extends React.Component {
         const pointsOfInterest = this.renderPolygons();
 
         return (
-            <div className="gr-wrapper container-fluid">
+            <div className="gr-wrapper">
                 <h4>Finalize</h4>
                 <div className="gr-map--wrapper">
                     <Map

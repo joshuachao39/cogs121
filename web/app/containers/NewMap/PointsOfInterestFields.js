@@ -62,7 +62,7 @@ export default class PointsOfInterestFields extends React.Component {
         const { position } = this.props;
 
         return (
-            <div className="gr-wrapper container-fluid">
+            <div className="gr-wrapper">
                 <h4>Draw points of interest</h4>
                 <div className="gr-map--wrapper">
                     <Map

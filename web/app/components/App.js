@@ -1,7 +1,4 @@
 import React, { PropTypes } from 'react';
-import { Link } from 'react-router';
-import { footer } from '../styles/footer.scss';
-import { styles } from '../styles/styles.scss';
 
 const App = ({ children }) =>
     <div>
@@ -15,28 +12,13 @@ const App = ({ children }) =>
                     <li className="nav-item active">
                         <a className="nav-link" href="/">Home <span className="sr-only">(current)</span></a>
                     </li>
-                    { /* <li className="nav-item">
-                        <a className="nav-link" href="#">Features</a>
-                    </li>
-                    <li className="nav-item">
-                        <a className="nav-link" href="#">Pricing</a>
-                    </li>
-                    <li className="nav-item">
-                        <a className="nav-link disabled" href="#">Disabled</a>
-                    </li>*/ }
-              </ul>
+                </ul>
             </div>
         </nav>
-
-        <body className={styles}>
-            <h1>Guorient</h1>
+        <div className="container">
             { children }
-        </body>
-
-        <footer className={footer}>
-            <Link to="/">Maps</Link>
-            <Link to="/about">About</Link>
-        </footer>
+        </div>
+        <footer />
     </div>;
 
 App.propTypes = {
