@@ -15,6 +15,7 @@ import {
 
 import PlaceMap from './place_map';
 import AddPlace from './add_place';
+import Maps from './Maps';
 
 const interestingRegions = [
   {
@@ -127,10 +128,17 @@ export default class Places extends Component {
           <PlaceMap annotations={this.state.annotations} />
         </TabBarIOS.Item>
         <TabBarIOS.Item
+          systemIcon="history"
+          selected={this.state.selectedTab === 1}
+          onPress={this.handleTabPress.bind(this,1)}
+        >
+          <Maps />
+        </TabBarIOS.Item>
+        <TabBarIOS.Item
           title="Place   "
           icon={require('./assets/pin.png')}
-          selected={this.state.selectedTab === 1}
-          onPress={this.handleTabPress.bind(this, 1)}
+          selected={this.state.selectedTab === 2}
+          onPress={this.handleTabPress.bind(this, 2)}
         >
           <AddPlace onAddPlace={this.handleAddPlace.bind(this)} />
         </TabBarIOS.Item>
