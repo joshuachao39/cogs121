@@ -126,16 +126,10 @@ router.route('/maps')
     res.json(mapsData);
   });
 
-router.route('/maps/0')
+router.route('/maps/:map_id')
 
   .get(function(req, res) {
-    res.json(mapsData[0]);
-  });
-
-router.route('/maps/1')
-
-  .get(function(req, res) {
-    res.json(mapsData[1]);
+    res.json(mapsData[req.params.map_id]);
   });
 
 app.use('/', router);
