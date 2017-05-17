@@ -2,7 +2,9 @@
 
 var MAP_EVENT = 'MAP_EVENT';
 
-var mapsData = [
+var mapsData = [];
+
+var mapsInventory = [
 {
   id: 0, // Should reflect index of array
   type: MAP_EVENT,
@@ -89,6 +91,7 @@ var mapsData = [
 },
 ];
 
+mapsData.push(mapsInventory[0], mapsInventory[1]);
 
 // BASE SETUP
 // =============================================================================
@@ -112,6 +115,8 @@ var router = express.Router();              // get an instance of the express Ro
 // test route to make sure everything is working (accessed at GET http://localhost:8000/)
 router.use(function(req, res, next) {
   console.log('Something is happening');
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
 
@@ -130,6 +135,11 @@ router.route('/maps/:map_id')
 
   .get(function(req, res) {
     res.json(mapsData[req.params.map_id]);
+  })
+
+  .delete(function(req, res) {
+    mapsData.splice(Number(req.params.map_id), 1);
+    res.json({ message: 'entry deleted' });   
   });
 
 app.use('/', router);
