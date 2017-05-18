@@ -1,10 +1,5 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, { Component } from 'react';
+import axios from 'axios';
 import {
   AppRegistry,
   StyleSheet,
@@ -13,134 +8,82 @@ import {
   TabBarIOS
 } from 'react-native';
 
-import PlaceMap from './place_map';
-import AddPlace from './add_place';
-import Maps from './Maps';
-
-const interestingRegions = [
-  {
-    title: "Humanities and Social Sciences Building",
-    latitude: 32.878336,
-    longitude: -117.241648,
-  },
-  {
-    title: "Geisel Library",
-    latitude: 32.881174,
-    longitude: -117.237453,
-  },
-  {
-    title: "Price Center Theater",
-    latitude: 32.879912,
-    longitude: -117.237110,
-  },
-  {
-    tilte: "Cognitive Science Building",
-    latitude: 32.880546,
-    longitude: -117.239459,
-  }
-];
-
-const SFInterestingRegions = [
-  {
-    title: "Magic Bus San Francisco",
-    latitude: 37.7882811,
-    longitude: -122.4071982
-  },
-  {
-    title: "Apple Union Square",
-    latitude: 37.7882811,
-    longitude: -122.4071982
-  },
-  {
-    title: "Neiman Marcus",
-    latitude: 37.7882811,
-    longitude: -122.4071982
-  },
-  {
-    title: "Chipotle Mexican Grill",
-    latitude: 37.7881016,
-    longitude: -122.4087334
-  }
-];
+import EventMap from './EventMap';
+import MapsList from './MapsList';
 
 export default class Places extends Component {
   constructor() {
     super();
     this.state = {
-      selectedTab: 0,
-      annotations: [
-        {
-          title: 'Smithsonian Museum',
-          latitude: 38.8980,
-          longitude: -77.0230
-        },
-        {
-          title: 'UMCP',
-          latitude: 38.9869,
-          longitude: -76.9426
-        },
-        {
-          title: 'Arlington',
-          latitude: 38.8783,
-          longitude: -77.0687
-        }
-      ],
-      annotations: SFInterestingRegions,
-      // annotations: [
-        // {
-        //   title: 'Smithsonian Museum',
-        //   latitude: 38.8980,
-        //   longitude: -77.0230
-        // },
-        // {
-        //   title: 'UMCP',
-        //   latitude: 38.9869,
-        //   longitude: -76.9426
-        // },
-        // {
-        //   title: 'Arlington',
-        //   latitude: 38.8783,
-        //   longitude: -77.0687
-        // }
-      // ],
-
+      selectedTab: 1,
+      loading: true,
     };
+
+    this.getMaps = this.getMaps.bind(this);
+    this.handleMapSelection = this.handleMapSelection.bind(this);
   }
 
-  handleAddPlace(annotation) {
-    const annotations = this.state.annotations.slice();
-    annotations.push(annotation);
-    this.setState({ annotations });
+  componentWillMount() {
+    this.getMaps();
   }
 
+  getMaps() {
+    const _this = this;
+
+    axios.get('http://localhost:8000/maps')
+      .then((res) => {
+        _this.setState({ 
+          loading: false,
+          maps: res.data,
+        });
+        return res.data;
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+
+  /**
+   * Handles the tab presses in the bottom nav bar
+   */
   handleTabPress(tab) {
-    this.setState({ selectedTab: tab })
+    this.setState({ selectedTab: tab });
+  }
+
+  /**
+   * Handles the map selection from the maps page
+   */
+  handleMapSelection(mapIndex) {
+    this.setState({ selectedTab: 0 });
+    this.setState({ currMap: this.state.maps[mapIndex] })
   }
 
   render() {
+    const { currMap, loading, maps } = this.state;
+
     return (
       <TabBarIOS>
         <TabBarIOS.Item
-          systemIcon="favorites"
+          systemIcon="recents"
           selected={this.state.selectedTab === 0}
           onPress={this.handleTabPress.bind(this, 0)}
         >
-          <PlaceMap annotations={this.state.annotations} />
+          <EventMap
+            loading={loading}
+            maps={maps}
+            currMap={currMap}
+          />
         </TabBarIOS.Item>
         <TabBarIOS.Item
-          systemIcon="history"
+          systemIcon="search"
           selected={this.state.selectedTab === 1}
-          onPress={this.handleTabPress.bind(this,1)}
+          onPress={this.handleTabPress.bind(this, 1)}
         >
-          <Maps />
-        </TabBarIOS.Item>
-        <TabBarIOS.Item
-          title="Place   "
-          icon={require('./assets/pin.png')}
-          selected={this.state.selectedTab === 2}
-          onPress={this.handleTabPress.bind(this, 2)}
-        >
-          <AddPlace onAddPlace={this.handleAddPlace.bind(this)} />
+          <MapsList
+            loading={this.state.loading}
+            maps={this.state.maps}
+            handleMapSelection={this.handleMapSelection}
+          />
         </TabBarIOS.Item>
       </TabBarIOS>
     );
