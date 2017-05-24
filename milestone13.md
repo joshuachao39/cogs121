@@ -16,4 +16,8 @@ We've implemented an about/splash page and updated the colors of the rest of the
 ![new-map](/images/M13-2.png)
 This screenshot shows an updated UI of the new map creation page.
 
-![mobile](/images/M13-3.png)
+![mobile](/images/listView-Yuxiao-13.png)
+This screenshot shows the startup page of the app: the list of all the maps imported from the web end's server
+
+![mobile](/images/mapView-Yuxiao-13.png)
+This screenshot shows the map if user clicks on one of the list items
