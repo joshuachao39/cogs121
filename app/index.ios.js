@@ -32,7 +32,7 @@ export default class Places extends Component {
 
     axios.get('http://localhost:8000/maps')
       .then((res) => {
-        _this.setState({ 
+        _this.setState({
           loading: false,
           maps: res.data,
         });
@@ -62,7 +62,12 @@ export default class Places extends Component {
     const { currMap, loading, maps } = this.state;
 
     return (
-      <TabBarIOS>
+      <TabBarIOS
+        unselectedTintColor="white"
+        tintColor="#39A4EB"
+        unselectedItemTintColor="white"
+        barTintColor="#46677D"
+      >
         <TabBarIOS.Item
           systemIcon="recents"
           selected={this.state.selectedTab === 0}
@@ -75,7 +80,8 @@ export default class Places extends Component {
           />
         </TabBarIOS.Item>
         <TabBarIOS.Item
-          systemIcon="search"
+          icon={require('./assets/list_icon.png')}
+          title="List"
           selected={this.state.selectedTab === 1}
           onPress={this.handleTabPress.bind(this, 1)}
         >
