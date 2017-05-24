@@ -84,7 +84,7 @@ export default class NameTypeFields extends React.Component {
                 <div className="gr-form--name-type-wrapper gr-form-group form-group">
                     <label htmlFor="mapName">Name</label>
                     <input
-                      className="gr-map--form-control form-control"
+                      className="gr-map--form-control form-control gr-form--control"
                       type="text"
                       name="mapName"
                       id="mapName"
@@ -93,7 +93,7 @@ export default class NameTypeFields extends React.Component {
                     />
                     <label htmlFor="description">Description</label>
                     <input
-                      className="gr-map--form-control form-control"
+                      className="gr-map--form-control form-control gr-form--control"
                       type="text"
                       name="description"
                       id="description"
