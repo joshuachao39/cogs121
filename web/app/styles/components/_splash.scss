@@ -1,0 +1,66 @@
+.gr-featurette {
+  position: relative;
+  margin-top: 80px;
+
+  &>.container {
+    position: static;
+  }
+  &--first,
+  &--second {
+    @media screen and (max-width: 960px) {
+      position: static;
+    }
+  }
+  &--first {
+    background: url('../public/featurette_1.png') no-repeat center center;
+    background-size: contain;
+    height: 420px;
+    min-height: 60vh;
+    position: absolute;
+    right: -30px;
+  }
+  &--second {
+    background: url('../public/featurette_2.png') no-repeat center center;
+    background-size: contain;
+    height: 420px;
+    min-height: 60vh;
+    // position: absolute;
+    // left: -80px;
+    position: absolute;
+    left: -100px;
+  }
+  &--text {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+  &--title {
+    color: $WHITE;
+    font-size: 64px;
+    margin-bottom: 30px;
+    letter-spacing: 2px;
+  }
+  &--subtext {
+    margin-bottom: 30px;
+    font-size: 18px;
+  }
+  &--subtitle {
+    color: $WHITE;
+    font-size: 36px;
+    margin-bottom: 30px;
+    letter-spacing: 2px;
+  }
+  &--btn {
+    color: $WHITE;
+    background: $PINK_1;
+    border: none;
+    border-radius: 25px;
+    padding: 12px 30px;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.stretch {
+  height: 420px;
+  min-height: 60vh;
+}
