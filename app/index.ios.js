@@ -80,8 +80,8 @@ export default class Places extends Component {
           />
         </TabBarIOS.Item>
         <TabBarIOS.Item
-          icon={require('./assets/list_icon.png')}
-          title="List"
+          icon={require('./assets/icons/list_icon.png')}
+          title=" List"
           selected={this.state.selectedTab === 1}
           onPress={this.handleTabPress.bind(this, 1)}
         >

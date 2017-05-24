@@ -56,7 +56,7 @@ export default class EventMap extends Component {
       longitude: nextProps.currMap.coords.lng,
     }
 
-    this.setState({ 
+    this.setState({
       region,
       receivedProps: true,
     });
