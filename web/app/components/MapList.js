@@ -21,12 +21,14 @@ class MapList extends React.Component {
         const { maps, filter } = this.props;
 
         newrow.push(
-          <MapTile key={'new'} data={{ type: MAP_NEW }} />
+            <div className="col-sm-12">
+                <MapTile
+                    key={'new'}
+                    data={{ type: MAP_NEW }}
+                    mapless={true}
+                />
+            </div>
         );
-
-        console.log('woohoo');
-
-        console.log(maps);
 
         if (!maps) {
             return (
@@ -45,17 +47,19 @@ class MapList extends React.Component {
 
             if (nameLC.indexOf(filterLC) !== -1) {
                 rows.push(
-                    <MapTile key={elem.name} data={elem} />
+                    <div className="col-md-4">
+                        <MapTile key={elem.name} data={elem} mapless={false} />
+                    </div>
                 );
             }
         });
 
         return (
             <div>
-                <div id="newrow">
+                <div id="newrow" className="row">
                     {newrow}
                 </div>
-                <div id="row">
+                <div id="row" className="row">
                     {rows}
                 </div>
             </div>
