@@ -13,10 +13,6 @@ const MapTile = ({ data, mapless }) => {
         marginTop: 20
     };
 
-    if (data.type === MAP_EVENT) {
-        console.log(data);
-    }
-
     const map = (mapless) ? null : (
         <div
             className="gr-card--map"

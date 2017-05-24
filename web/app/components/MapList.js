@@ -48,7 +48,11 @@ class MapList extends React.Component {
             if (nameLC.indexOf(filterLC) !== -1) {
                 rows.push(
                     <div className="col-md-4">
-                        <MapTile key={elem.name} data={elem} mapless={false} />
+                        <MapTile
+                            key={elem.name}
+                            data={elem}
+                            mapless={false}
+                        />
                     </div>
                 );
             }
