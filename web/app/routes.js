@@ -8,8 +8,8 @@ import About from './components/About';
 
 export default (
 	<Route path="/" component={App}>
-		<IndexRoute component={FilterableTable} />
-		<Route path="/about" component={About} />
+		<IndexRoute component={About} />
+		<Route path="maps" component={FilterableTable} />
     <Route path="maps/new" component={NewMapContainer} />
     <Route path="maps/:mapId" component={MapContainer} />
 	</Route>

@@ -212,7 +212,7 @@ class NewMapContainer extends React.Component {
                     Step {this.state.step + 1} of 5
                     <Line
                         percent={percent}
-                        strokeColor="#7D8DF6"
+                        strokeColor="#EB3986"
                     />
                 </div>
                 {fields}

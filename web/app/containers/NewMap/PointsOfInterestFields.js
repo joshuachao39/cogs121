@@ -15,15 +15,6 @@ export default class PointsOfInterestFields extends React.Component {
     constructor(props) {
         super(props);
 
-        // TODO: only allow one boundary to be drawn
-
-        this.state = {
-            mapName: 'New Map',
-            locationName: 'San Francisco',
-            // Keeps track of if the boundary of the event has been created
-            boundaryCreated: false,
-        };
-
         this.validate = this.validate.bind(this);
         this.validateAndNext = this.validateAndNext.bind(this);
         this.validateAndPrevious = this.validateAndPrevious.bind(this);
@@ -53,9 +44,6 @@ export default class PointsOfInterestFields extends React.Component {
     _onCreate(e) {
         // Prep datatype
         this.props.handlePoints(e.layer._latlngs[0]);
-        this.setState({
-            boundaryCreated: true,
-        });
     }
 
     render() {

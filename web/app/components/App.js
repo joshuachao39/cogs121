@@ -15,7 +15,7 @@ const App = ({ children }) =>
                 </ul>
             </div>
         </nav>
-        <div className="container">
+        <div className="container-fluid">
             { children }
         </div>
         <footer />

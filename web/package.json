@@ -37,7 +37,8 @@
     "redux": "^3.5.2",
     "redux-axios-middleware": "^4.0.0",
     "redux-logger": "^2.7.4",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "url-loader": "^0.5.8"
   },
   "devDependencies": {
     "autoprefixer": "^6.3.6",
