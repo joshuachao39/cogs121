@@ -10,6 +10,21 @@ html,
   color: $WHITE;
 }
 
+.btn {
+  margin: 5px 5px 15px 0px;
+}
+
+.btn-primary {
+  background-image: -webkit-linear-gradient(#4f5151, #474949 6%, #3f4141);
+  border: 1px solid #2e2f2f;
+}
+
+.btn-primary:hover {
+  border-color: $GREEN_1;
+  background-image: none;
+  background-color: $GREEN_1;
+}
+
 input {
   color: $BACKGROUND_COLOR;
   background-color: $WHITE;
@@ -34,14 +49,26 @@ input {
   height: 100%;
 }
 
+h2, h4 {
+  color: white;
+  font-family: $FONT_FAMILY;
+}
+
+h4.card-title {
+  color: black;
+  font-family: $FONT_FAMILY;
+}
+
+p {
+  color: $PINK_1;
+  font-family: $FONT_FAMILY;
+}
+
 h1,
-h2,
 h3,
-h4,
 h5,
 h6,
 a,
-p,
 li {
   font-family: $FONT_FAMILY;
 }
