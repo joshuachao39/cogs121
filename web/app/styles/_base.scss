@@ -6,7 +6,17 @@ html,
 #app {
   width: 100%;
   height: 100%;
-  background-color: $GRAY_3;
+  background-color: $BACKGROUND_COLOR;
+  color: $WHITE;
+}
+
+input {
+  color: $BACKGROUND_COLOR;
+  background-color: $WHITE;
+}
+
+.navbar {
+  background-color: none;
 }
 
 .stretch {
@@ -39,7 +49,7 @@ li {
 a,
 p,
 li {
-  font-weight: 300;
+  font-family: $TEXT_FONT;
   letter-spacing: 1px;
 }
 
