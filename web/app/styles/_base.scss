@@ -97,6 +97,15 @@ li {
   }
 }
 
+.white {
+  color: $WHITE;
+
+  &:hover,
+  &:active {
+    color: white;
+  }
+}
+
 input[type="radio"] {
   visibility:hidden;
 }
@@ -113,10 +122,23 @@ input[type="text"] {
   }
 }
 
+.gr-navbar--dark {
+  background-color: $DARK_BLUE;
+
+  .container {
+    padding-left: 30px;
+  }
+  .navbar-brand,
+  .nav-link {
+    color: $WHITE !important;
+  }
+}
+
 .navbar-fixed {
-  position: fixed;
+  position: absolute;
   top: 0;
   width: 100%;
+  z-index: 2;
 }
 
 .gr-input {
