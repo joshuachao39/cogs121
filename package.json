@@ -1,0 +1,22 @@
+{
+  "name": "guorient",
+  "version": "1.0.0",
+  "description": "* Joshua Chao (R.I.P.) * Allen Gao * Rishi Dhanaraj * Vincent Liaw",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/liawesomesaucer/cogs121.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/liawesomesaucer/cogs121/issues"
+  },
+  "scripts": {
+    "start": { "postinstall": "cd server && npm install" }
+  },
+  "homepage": "https://github.com/liawesomesaucer/cogs121#readme"
+}

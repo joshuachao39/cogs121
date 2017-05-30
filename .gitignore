@@ -2,3 +2,6 @@
 
 node_modules/
 npm-debug.log
+
+# Vincent's old instance of app folder
+app.old/
