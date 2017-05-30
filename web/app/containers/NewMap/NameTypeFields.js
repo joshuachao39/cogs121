@@ -8,9 +8,13 @@ const propTypes = {
     handleInit: PropTypes.func,
     nextStep: PropTypes.func,
     prevStep: PropTypes.func,
+    description: PropTypes.string,
 };
 
 const defaultProps = {
+    mapName: '',
+    description: '',
+    type: '',
     handleInit() {},
     nextStep() {},
     prevStep() {},
@@ -21,8 +25,9 @@ export default class NameTypeFields extends React.Component {
         super(props);
 
         this.state = {
-            mapName: this.props.mapName || '',
-            type: this.props.type || '',
+            mapName: this.props.mapName,
+            description: this.props.description,
+            type: this.props.type,
         };
 
         this.changeName = this.changeName.bind(this);
@@ -94,7 +99,7 @@ export default class NameTypeFields extends React.Component {
                       name="description"
                       id="description"
                       value={this.state.description}
-                      onChange={this.changeType}
+                      onChange={this.changeDescription}
                     />
                     <div className="gr-input--title">Select type of event</div>
                     <div
@@ -160,20 +165,20 @@ export default class NameTypeFields extends React.Component {
                         </div>
                         <div className="col-md-3 gr-input--card">
                             <label
-                                htmlFor="type-golf"
-                                className={(this.state.type === 'golf') ? 'selected' : ''}
+                                htmlFor="type-other"
+                                className={(this.state.type === 'other') ? 'selected' : ''}
                             >
                                 <input
                                     type="radio"
-                                    value="golf"
+                                    value="other"
                                     name="type"
-                                    id="type-golf"
+                                    id="type-other"
                                 />
                                 <div className="gr-input--card-icon">
-                                    <FontAwesome name="flag" />
+                                    <FontAwesome name="question" />
                                 </div>
                                 <div className="gr-input--card-text">
-                                    Golf
+                                    Other
                                 </div>
                             </label>
                         </div>

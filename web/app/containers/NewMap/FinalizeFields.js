@@ -128,6 +128,7 @@ export default class FinalizeFields extends React.Component {
                             attribution="&copy; <a href='http://osm.org/copyright'>OpenStreetMap</a> contributors"
                         />
                         <Polygon
+                            color="#888888"
                             positions={this.props.polyCoords}
                         />
                         {renderedPointsOfInterest}

@@ -2,8 +2,6 @@ import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import { Map, TileLayer, Polygon } from 'react-leaflet';
 
-import { MAP_EVENT } from './MapTileTypes';
-
 const MapTile = ({ data, mapless }) => {
     let id = 'New';
     let name = 'Name';
@@ -15,16 +13,14 @@ const MapTile = ({ data, mapless }) => {
         marginTop: 20
     };
 
-    if (data.type === MAP_EVENT) {
-        id = data.id;
-        name = data.name;
-        description = data.description;
+    id = data.id;
+    name = data.name;
+    description = data.description;
 
-        polygons = data.points.map((point) => {
-            const position = point.boundary.points;
-            return <Polygon positions={position} />;
-        });
-    }
+    polygons = data.points.map((point) => {
+        const position = point.boundary.points;
+        return <Polygon positions={position} />;
+    });
 
     const map = (mapless) ? null : (
         <div

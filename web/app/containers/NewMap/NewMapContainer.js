@@ -142,6 +142,9 @@ class NewMapContainer extends React.Component {
             case 0: {
                 fields = (
                     <NameTypeFields
+                        mapName={newMap.name}
+                        description={newMap.description}
+                        type={newMap.type}
                         step={step}
                         handleInit={this.handleInit}
                         nextStep={this.nextStep}
