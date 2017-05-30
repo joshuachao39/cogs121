@@ -7,6 +7,8 @@ import {
   TouchableHighlight,
 } from 'react-native';
 
+import ScrollableTabView, { DefaultTabBar } from 'react-native-scrollable-tab-view';
+
 export default class MapsList extends Component {
   constructor(props){
     super(props);
@@ -52,7 +54,14 @@ export default class MapsList extends Component {
         <Text style={styles.header}>
           Guorient
         </Text>
-        {mapList}
+        <ScrollableTabView style={{}} renderTabBar={() => <DefaultTabBar />}>
+          <View tabLabel="List">
+            {mapList}
+          </View>
+          <View tabLabel="Tiles">
+            {mapList}
+          </View>
+        </ScrollableTabView>
       </View>
     );
   }
@@ -74,6 +83,7 @@ const styles = StyleSheet.create({
     color: '#46677D',
   },
   header: {
+    backgroundColor: 'transparent',
     color: '#FAFAFA',
     fontSize: 20,
     marginBottom: 20,
