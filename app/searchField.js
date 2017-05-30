@@ -10,7 +10,7 @@ export default class SearchField extends Component {
   render() {
     return (
       <TextInput
-        style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+        style={{height: 40, borderColor: 'blue', borderWidth: 1}}
         onChangeText={(filter) => this.setState({filter})}
         value={this.state.filter}
       />

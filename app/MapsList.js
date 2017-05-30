@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import {
   Linking,
   View,
+  Image,
   StyleSheet,
   Text,
   TouchableHighlight,
+  TextInput,
 } from 'react-native';
 
 import MapView, { Polygon } from 'react-native-maps';
@@ -15,6 +17,9 @@ export default class MapsList extends Component {
     this.state = {
       name: [],
       showType: 'tiles',
+      showSearch: false,
+      searchFilter: '',
+      searchIconPath: '',
     };
 
     this.renderTabBar = this.renderTabBar.bind(this);
@@ -27,6 +32,13 @@ export default class MapsList extends Component {
 
   setViewType(type) {
     this.setState({ showType: type });
+  }
+
+  toggleSearch() {
+    // Clear search field on reset
+    if (this.state.showSearch) this.setState({ searchFilter: '' });
+    this.setState({ showSearch: !this.state.showSearch });
+    searchIconPath= (this.state.showSearch) ?'./assets/icons/searchWhite.png' : './assets/icons/searchBlack.png';
   }
 
   renderTabBar() {
@@ -69,12 +81,12 @@ export default class MapsList extends Component {
   renderMapList() {
     const { maps } = this.props;
     const _this = this;
-    // to remove
-    filter = "SD";
+
+    const { searchFilter } = this.state;
 
     return maps.map(function(elem, i){
       const nameLC = elem.name.toLowerCase();
-      const filterLC = filter.toLowerCase();
+      const filterLC = searchFilter.toLowerCase();
 
       if (nameLC.search(filterLC) !== -1) {
         if (_this.state.showType === 'list') {
@@ -128,12 +140,35 @@ export default class MapsList extends Component {
     if (this.props.loading) {
       return <Text>Loading...</Text>
     }
-
+    var icon = this.state.showSearch ? require('./assets/icons/searchBlack.png') : require('./assets/icons/searchWhite.png');
     return (
       <View style={styles.view}>
-        <Text style={styles.header}>
-          Guorient
-        </Text>
+        <View style={styles.headerBar}>
+          <Text style={styles.header}>
+            Guorient
+          </Text>
+          <TouchableHighlight
+            style={{
+              position: 'absolute',
+              right: 0,
+            }}
+            onPress={this.toggleSearch.bind(this)}
+          >
+              <View>
+                <View style={styles.search}>
+                  {this.state.showSearch &&
+                    <TextInput
+                      style={{height: 30, borderColor: 'gray', borderWidth: 1}}
+                      onChangeText={(searchFilter) => this.setState({searchFilter})}
+                      value={this.state.searchFilter}
+                    />
+                  }
+                </View>
+                <Image source={icon}
+                  style={styles.searchIcon}/>
+              </View>
+          </TouchableHighlight>
+        </View>
         {this.renderTabBar()}
         {this.renderMapList()}
       </View>
@@ -142,22 +177,36 @@ export default class MapsList extends Component {
 }
 
 const styles = StyleSheet.create({
+  headerBar: {
+    height: 40,
+    flexDirection: 'row',
+  },
   map: {
     height: 170,
   },
   tileTouchableHighlight: {
-    height: 200,
     backgroundColor: '#FAFAFA',
+    marginBottom: 10,
   },
   tileTouchableHighlightText: {
     padding: 10,
+    paddingTop: 14,
+    paddingBottom: 14,
     color: '#46677D',
+  },
+  searchIcon: {
+    position: 'absolute',
+    right: 0,
   },
   view: {
     paddingLeft: 10,
     paddingRight: 10,
     paddingTop: 30,
     flex: 1,
+  },
+  search: {
+    backgroundColor: 'white',
+    width: 200,
   },
   topTabBarWrapper: {
     flexDirection: 'row',
