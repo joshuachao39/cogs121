@@ -11,6 +11,7 @@
     "module-resolver": "^1.0.0",
     "react": "16.0.0-alpha.6",
     "react-native": "0.43.3",
+    "react-native-linear-gradient": "^2.0.0",
     "react-native-maps": "^0.14.0"
   },
   "devDependencies": {
