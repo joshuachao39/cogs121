@@ -54,7 +54,7 @@ class NewMapContainer extends React.Component {
                 ...this.state.newMap,
                 name,
                 description,
-                type: 'MAP_EVENT',
+                type,
             },
         });
         console.log(this.state.newMap);
@@ -192,6 +192,10 @@ class NewMapContainer extends React.Component {
                 fields = (
                     <FinalizeFields
                         step={step}
+                        name={newMap.name}
+                        description={newMap.description}
+                        type={newMap.type}
+                        locationName={newMap.locationName}
                         polyCoords={newMap.boundary.points}
                         pointsOfInterest={newMap.points}
                         position={newMap.coords}

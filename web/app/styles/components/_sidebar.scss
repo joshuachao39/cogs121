@@ -21,7 +21,7 @@
   }
   &--wrapper {
     width: 30%;
-    overflow-y: hidden;
+    overflow-y: scroll;
     height: 100vh;
     display: inline-block;
     padding: 1vh 18px;
@@ -69,6 +69,16 @@
       letter-spacing: 1px;
       padding-left: 12px;
     }
+  }
+  &--finalize-list {
+    background-color: $WHITE;
+    padding: 4px 8px;
+    box-shadow: 0 2px 20px $SHADOW_DEFAULT;
+    color: $DARK_BLUE;
+    font-weight: 300;
+  }
+  &--finalize-list-elem {
+    margin: 8px 0;
   }
 }
 

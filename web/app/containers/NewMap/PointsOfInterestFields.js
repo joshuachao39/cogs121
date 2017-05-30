@@ -102,7 +102,8 @@ export default class PointsOfInterestFields extends React.Component {
     _onCreate(e) {
         // Prep datatype
         // this.props.handlePoints(e.layer._latlngs[0]);
-        const newIndex = this.props.pointsOfInterest.length;
+        const newIndex = this.state.pointsOfInterest.length + 1;
+
         this.setState({
             pointsOfInterest: [
                 ...this.state.pointsOfInterest,
@@ -179,6 +180,7 @@ export default class PointsOfInterestFields extends React.Component {
                             attribution="&copy; <a href='http://osm.org/copyright'>OpenStreetMap</a> contributors"
                         />
                         <Polygon
+                            color="#888888"
                             positions={this.props.polyCoords}
                         />
                         {pointsOfInterest}

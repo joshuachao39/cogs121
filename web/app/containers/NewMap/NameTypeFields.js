@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
-import { MAP_EVENT } from '../../components/MapTileTypes';
 
 const propTypes = {
+    mapName: PropTypes.string,
+    type: PropTypes.string,
     handleInit: PropTypes.func,
     nextStep: PropTypes.func,
     prevStep: PropTypes.func,
@@ -20,8 +21,8 @@ export default class NameTypeFields extends React.Component {
         super(props);
 
         this.state = {
-            mapName: 'New Map',
-            type: MAP_EVENT,
+            mapName: this.props.mapName || '',
+            type: this.props.type || '',
         };
 
         this.changeName = this.changeName.bind(this);
@@ -62,16 +63,10 @@ export default class NameTypeFields extends React.Component {
     }
 
     validateAndPrevious() {
-        if (this.validate()) {
-            this.props.handleInit(this.state.mapName, this.state.description, this.state.type);
-            this.props.prevStep();
-        }
+        window.location.href = '/maps';
     }
 
     validateAndNext() {
-        console.log(this.state.mapName);
-        console.log(this.state.description);
-        console.log(this.state.type);
         if (this.validate()) {
             this.props.handleInit(this.state.mapName, this.state.description, this.state.type);
             this.props.nextStep();
@@ -189,7 +184,7 @@ export default class NameTypeFields extends React.Component {
                         className="btn btn-default gr-btn--left gr-btn"
                         onClick={this.validateAndPrevious}
                     >
-                        Prev
+                        Back
                     </button>
                     <button
                         className="btn btn-default gr-btn--right gr-btn gr-btn--primary"

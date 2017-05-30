@@ -39,9 +39,9 @@ class LocationFields extends React.Component {
         this.validate = this.validate.bind(this);
     }
 
-    handleDrag(e) {
+    handleDrag() {
         this.setState({
-            position: e.target.options.center,
+            position: this.leafletMap.leafletElement.getCenter(),
         });
     }
 
@@ -61,15 +61,17 @@ class LocationFields extends React.Component {
 
     handleSelectSuggest(suggest, coordinate) {
         // TODO: fix coordinate on drag after search
-        console.log(coordinate);
         const position = {
             lat: coordinate.latitude,
             lng: coordinate.longitude,
         };
+
         this.setState({
+            locationName: suggest.description,
             search: suggest.description,
             position,
         });
+        this.leafletMap.leafletElement.setView(position);
     }
 
     validateAndPrevious() {
@@ -146,6 +148,7 @@ class LocationFields extends React.Component {
                 </div>
                 <div className="gr-map--wrapper">
                     <Map
+                        ref={m => { this.leafletMap = m; }}
                         onDragEnd={this.handleDrag}
                         center={position}
                         zoom={18}

@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Map, TileLayer, Polygon } from 'react-leaflet';
 import { Line } from 'rc-progress';
+import FontAwesome from 'react-fontawesome';
 
 export default class FinalizeFields extends React.Component {
     constructor(props) {
@@ -39,10 +40,10 @@ export default class FinalizeFields extends React.Component {
     }
 
     render() {
-        const { position, step } = this.props;
+        const { position, step, name, description, type, locationName, pointsOfInterest } = this.props;
         const percent = (step / 4) * 100;
 
-        const pointsOfInterest = this.renderPolygons();
+        const renderedPointsOfInterest = this.renderPolygons();
 
         return (
             <div className="gr-wrapper gr-newmap--wrapper">
@@ -67,6 +68,35 @@ export default class FinalizeFields extends React.Component {
                             <h4 className="gr-sidebar--instruction">
                                 Finalize
                             </h4>
+                            <div className="gr-sidebar--finalize-list">
+                                {name &&
+                                    <div className="gr-sidebar--finalize-list-elem">
+                                        Name: {name}
+                                    </div>
+                                }
+                                {description &&
+                                    <div className="gr-sidebar--finalize-list-elem">
+                                        Description: {description}
+                                    </div>
+                                }
+                                {type &&
+                                    <div className="gr-sidebar--finalize-list-elem">
+                                        Type: {type}
+                                    </div>
+                                }
+                                {locationName &&
+                                    <div className="gr-sidebar--finalize-list-elem">
+                                        <FontAwesome name="flag"/>
+                                        &nbsp;Location: near {locationName}
+                                    </div>
+                                }
+                                {pointsOfInterest &&
+                                    <div className="gr-sidebar--finalize-list-elem">
+                                        <FontAwesome name="map-marker" />
+                                        &nbsp;{pointsOfInterest.length} points of interest
+                                    </div>
+                                }
+                            </div>
                         </div>
                         <div className="gr-step--selector gr-sidebar--bottom">
                             <button
@@ -100,7 +130,7 @@ export default class FinalizeFields extends React.Component {
                         <Polygon
                             positions={this.props.polyCoords}
                         />
-                        {pointsOfInterest}
+                        {renderedPointsOfInterest}
                     </Map>
                 </div>
             </div>
@@ -110,6 +140,10 @@ export default class FinalizeFields extends React.Component {
 
 FinalizeFields.propTypes = {
     step: PropTypes.number,
+    name: PropTypes.string,
+    description: PropTypes.string,
+    type: PropTypes.string,
+    locationName: PropTypes.string,
     nextStep: PropTypes.func,
     prevStep: PropTypes.func,
     handleSubmit: PropTypes.func,
