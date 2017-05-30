@@ -49,6 +49,9 @@ export default class MapsList extends Component {
 
     return (
       <View style={styles.view}>
+        <Text style={styles.header}>
+          Guorient
+        </Text>
         {mapList}
       </View>
     );
@@ -57,15 +60,22 @@ export default class MapsList extends Component {
 
 const styles = StyleSheet.create({
   view: {
-    paddingTop: 50,
-    paddingLeft:30,
-    paddingRight: 30,
-    flex: 1
+    paddingLeft: 10,
+    paddingRight: 10,
+    paddingTop: 30,
+    flex: 1,
   },
   TouchableHighlight: {
-    backgroundColor: '#a3daff',
+    backgroundColor: '#FAFAFA',
     padding: 12,
-    borderRadius: 6,
-    marginBottom: 5,
+    marginBottom: 8,
+  },
+  text: {
+    color: '#46677D',
+  },
+  header: {
+    color: '#FAFAFA',
+    fontSize: 20,
+    marginBottom: 20,
   }
 });
