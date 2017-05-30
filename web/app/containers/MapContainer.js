@@ -46,14 +46,14 @@ class MapContainer extends React.Component {
         });
 
         return (
-            <div className="gr-map--wrapper container-fluid">
+            <div className="gr-map--wrapper">
                 <h2>{this.map.name}</h2>
                 <Map
                     center={position}
                     zoom={18}
                     scrollWheelZoom={false}
                     style={{
-                        height: '80vh',
+                        height: '100vh',
                     }}
                 >
                     <TileLayer

@@ -1,5 +1,18 @@
 .gr-card {
 	&.card {
-		padding-top: 10px;
+    border-radius: 0;
+    box-shadow: 0 2px 20px $SHADOW_DEFAULT;
 	}
+  &--link {
+    &:hover,
+    &:active,
+    &:focus {
+      text-decoration: none;
+    }
+  }
+  &--description {
+    color: $DARK_BLUE;
+    height: 50px;
+    overflow: hidden;
+  }
 }

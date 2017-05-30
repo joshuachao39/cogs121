@@ -1,6 +1,16 @@
 .gr-map {
   &--wrapper {
     position: relative;
+    width: 70%;
+    height: 100vh;
+    display: inline-block;
     z-index: 1;
+  }
+}
+
+.gr-newmap {
+  &--wrapper {
+    height: 100vh;
+    overflow-y: hidden;
   }
 }

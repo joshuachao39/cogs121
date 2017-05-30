@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Map, TileLayer } from 'react-leaflet';
 import GoogleMapLoader from 'react-google-maps-loader';
 import GooglePlacesSuggest from 'react-google-places-suggest';
+import { Line } from 'rc-progress';
 import 'react-google-places-suggest/lib/index.css';
 
 // Seed some locations for the demo
@@ -38,9 +39,9 @@ class LocationFields extends React.Component {
         this.validate = this.validate.bind(this);
     }
 
-    handleDrag(e) {
+    handleDrag() {
         this.setState({
-            position: e.target.options.center,
+            position: this.leafletMap.leafletElement.getCenter(),
         });
     }
 
@@ -60,15 +61,17 @@ class LocationFields extends React.Component {
 
     handleSelectSuggest(suggest, coordinate) {
         // TODO: fix coordinate on drag after search
-        console.log(coordinate);
         const position = {
             lat: coordinate.latitude,
             lng: coordinate.longitude,
         };
+
         this.setState({
+            locationName: suggest.description,
             search: suggest.description,
             position,
         });
+        this.leafletMap.leafletElement.setView(position);
     }
 
     validateAndPrevious() {
@@ -87,33 +90,71 @@ class LocationFields extends React.Component {
 
     render() {
         const { position, search } = this.state;
-        const { googleMaps } = this.props;
+        const { googleMaps, step } = this.props;
+        const percent = (step / 4) * 100;
 
         return (
-            <div className="gr-wrapper">
-                <div className="form-group">
-                    <GooglePlacesSuggest
-                        googleMaps={googleMaps}
-                        onSelectSuggest={this.handleSelectSuggest}
-                        search={search}
-                    >
-                        <input
-                            className="form-control"
-                            type="text"
-                            value={search}
-                            placeholder="Search a location"
-                            onChange={this.handleSearchChange}
-                        />
-                    </GooglePlacesSuggest>
+            <div className="gr-wrapper gr-newmap--wrapper">
+                <div className="gr-sidebar--wrapper">
+                    <div className="gr-sidebar">
+                        <div className="gr-sidebar--top">
+                            <h1>Guorient</h1>
+                            <div className="gr-progress">
+                                Step {step + 1} of 5
+                                <Line
+                                    style={{
+                                        height: '12px',
+                                        width: '100%',
+                                        borderRadius: '6px',
+                                    }}
+                                    percent={percent}
+                                    strokeColor="#EB3986"
+                                />
+                            </div>
+                        </div>
+                        <div className="vcenter form-group">
+                            <h4 className="gr-sidebar--instruction">
+                                Center map on your event
+                            </h4>
+                            <GooglePlacesSuggest
+                                googleMaps={googleMaps}
+                                onSelectSuggest={this.handleSelectSuggest}
+                                search={search}
+                            >
+                                <input
+                                    className="form-control gr-input"
+                                    type="text"
+                                    value={search}
+                                    placeholder="Search a location"
+                                    onChange={this.handleSearchChange}
+                                />
+                            </GooglePlacesSuggest>
+                        </div>
+                        <div className="gr-step--selector gr-sidebar--bottom">
+                            <button
+                                className="btn btn-default gr-btn--left gr-btn"
+                                onClick={this.validateAndPrevious}
+                            >
+                                Prev
+                            </button>
+                            <button
+                                className="btn btn-default gr-btn--right gr-btn gr-btn--primary"
+                                onClick={this.validateAndNext}
+                            >
+                                Next
+                            </button>
+                        </div>
+                    </div>
                 </div>
                 <div className="gr-map--wrapper">
                     <Map
+                        ref={m => { this.leafletMap = m; }}
                         onDragEnd={this.handleDrag}
                         center={position}
                         zoom={18}
                         scrollWheelZoom={false}
                         style={{
-                            height: '80vh',
+                            height: '100%',
                         }}
                     >
                         <TileLayer
@@ -122,26 +163,13 @@ class LocationFields extends React.Component {
                         />
                     </Map>
                 </div>
-                <div className="gr-step--selector">
-                    <button
-                        className="btn btn-default gr-btn--left gr-btn"
-                        onClick={this.validateAndPrevious}
-                    >
-                        Prev
-                    </button>
-                    <button
-                        className="btn btn-default gr-btn--right gr-btn"
-                        onClick={this.validateAndNext}
-                    >
-                        Next
-                    </button>
-                </div>
             </div>
         );
     }
 }
 
 LocationFields.propTypes = {
+    step: PropTypes.number,
     nextStep: PropTypes.func,
     prevStep: PropTypes.func,
     handleLocation: PropTypes.func,

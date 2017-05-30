@@ -7,6 +7,8 @@ import {
   TouchableHighlight,
 } from 'react-native';
 
+import ScrollableTabView, { DefaultTabBar } from 'react-native-scrollable-tab-view';
+
 export default class MapsList extends Component {
   constructor(props){
     super(props);
@@ -27,21 +29,39 @@ export default class MapsList extends Component {
     const { maps } = this.props;
     const _this = this;
 
+    // to remove
+    filter = "SD";
+
     const mapList = maps.map(function(elem, i){
-      return (
-        <TouchableHighlight
-          style={styles.TouchableHighlight}
-          key={elem.name}
-          onPress={() => _this.handleOnPress(i)}
-        >
-          <Text>{elem.name}</Text>
-        </TouchableHighlight>
-      );
+      const nameLC = elem.name.toLowerCase();
+      const filterLC = filter.toLowerCase();
+
+      if (nameLC.search(filterLC) != -1) {
+        return (
+          <TouchableHighlight
+            style={styles.TouchableHighlight}
+            key={elem.name}
+            onPress={() => _this.handleOnPress(i)}
+          >
+            <Text>{elem.name}</Text>
+          </TouchableHighlight>
+        );
+      }
     });
 
     return (
       <View style={styles.view}>
-        {mapList}
+        <Text style={styles.header}>
+          Guorient
+        </Text>
+        <ScrollableTabView style={{}} renderTabBar={() => <DefaultTabBar />}>
+          <View tabLabel="List">
+            {mapList}
+          </View>
+          <View tabLabel="Tiles">
+            {mapList}
+          </View>
+        </ScrollableTabView>
       </View>
     );
   }
@@ -49,16 +69,23 @@ export default class MapsList extends Component {
 
 const styles = StyleSheet.create({
   view: {
-    paddingTop: 50,
-    paddingLeft:30,
-    paddingRight: 30,
-    backgroundColor: '#E3E3E3',
-    flex: 1
+    paddingLeft: 10,
+    paddingRight: 10,
+    paddingTop: 30,
+    flex: 1,
   },
   TouchableHighlight: {
-    backgroundColor: '#a3daff',
+    backgroundColor: '#FAFAFA',
     padding: 12,
-    borderRadius: 6,
-    marginBottom: 5,
+    marginBottom: 8,
+  },
+  text: {
+    color: '#46677D',
+  },
+  header: {
+    backgroundColor: 'transparent',
+    color: '#FAFAFA',
+    fontSize: 20,
+    marginBottom: 20,
   }
 });
