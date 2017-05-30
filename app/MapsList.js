@@ -7,13 +7,18 @@ import {
   TouchableHighlight,
 } from 'react-native';
 
+import MapView, { Polygon } from 'react-native-maps';
+
 export default class MapsList extends Component {
   constructor(props){
     super(props);
     this.state = {
       name: [],
-      showType: 'list',
+      showType: 'tiles',
     };
+
+    this.renderTabBar = this.renderTabBar.bind(this);
+    this.renderMapList = this.renderMapList.bind(this);
   }
 
   handleOnPress(i) {
@@ -57,33 +62,72 @@ export default class MapsList extends Component {
     );
   }
 
-  render() {
-    if (this.props.loading) {
-      return <Text>Loading...</Text>
-    }
-
+  /**
+   * Renders the list of maps, differing based on
+   * what current view is selected
+   */
+  renderMapList() {
     const { maps } = this.props;
     const _this = this;
-
     // to remove
     filter = "SD";
 
-    const mapList = maps.map(function(elem, i){
+    return maps.map(function(elem, i){
       const nameLC = elem.name.toLowerCase();
       const filterLC = filter.toLowerCase();
 
       if (nameLC.search(filterLC) !== -1) {
-        return (
-          <TouchableHighlight
-            style={styles.TouchableHighlight}
-            key={elem.name}
-            onPress={() => _this.handleOnPress(i)}
-          >
-            <Text style={styles.touchableHighlightText}>{elem.name}</Text>
-          </TouchableHighlight>
-        );
+        if (_this.state.showType === 'list') {
+          return (
+            <TouchableHighlight
+              style={styles.TouchableHighlight}
+              key={elem.name}
+              onPress={() => _this.handleOnPress(i)}
+            >
+              <Text style={styles.touchableHighlightText}>{elem.name}</Text>
+            </TouchableHighlight>
+          );
+        } else {
+          const coords = {
+            latitude: elem.coords.lat,
+            longitude: elem.coords.lng,
+            latitudeDelta: 0.005,
+            longitudeDelta: 0.005,
+          };
+
+          const borderPoints = elem.boundary.points.map((pt) => {
+            return {
+              latitude: pt.lat,
+              longitude: pt.lng,
+            };
+          });
+
+          return (
+            <TouchableHighlight
+              style={styles.tileTouchableHighlight}
+              key={elem.name}
+              onPress={() => _this.handleOnPress(i)}
+            >
+              <View>
+                <MapView
+                  style={styles.map}
+                  region={coords}
+                >
+                  <Polygon coordinates={borderPoints} />
+                </MapView>
+                <Text style={styles.tileTouchableHighlightText}>{elem.name}</Text>
+              </View>
+            </TouchableHighlight>
+          )
+        }
       }
     });
+  }
+
+  render() {
+    if (this.props.loading) {
+      return <Text>Loading...</Text>
+    }
 
     return (
       <View style={styles.view}>
@@ -91,13 +135,24 @@ export default class MapsList extends Component {
           Guorient
         </Text>
         {this.renderTabBar()}
-        {mapList}
+        {this.renderMapList()}
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
+  map: {
+    height: 170,
+  },
+  tileTouchableHighlight: {
+    height: 200,
+    backgroundColor: '#FAFAFA',
+  },
+  tileTouchableHighlightText: {
+    padding: 10,
+    color: '#46677D',
+  },
   view: {
     paddingLeft: 10,
     paddingRight: 10,
