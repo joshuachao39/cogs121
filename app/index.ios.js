@@ -10,6 +10,8 @@ import {
 
 import EventMap from './EventMap';
 import MapsList from './MapsList';
+import SearchField from './SearchField';
+import EventsTab from './EventsTab';
 
 export default class Places extends Component {
   constructor() {
@@ -85,11 +87,7 @@ export default class Places extends Component {
           selected={this.state.selectedTab === 1}
           onPress={this.handleTabPress.bind(this, 1)}
         >
-          <MapsList
-            loading={this.state.loading}
-            maps={this.state.maps}
-            handleMapSelection={this.handleMapSelection}
-          />
+          <EventsTab/>
         </TabBarIOS.Item>
       </TabBarIOS>
     );
