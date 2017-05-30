@@ -28,6 +28,12 @@ export default class NameTypeFields extends React.Component {
             mapName: this.props.mapName,
             description: this.props.description,
             type: this.props.type,
+            nError: false,
+            dError: false,
+            tError: false,
+            nameError: '',
+            descriptionError: '',
+            typeError: '',
         };
 
         this.changeName = this.changeName.bind(this);
@@ -64,7 +70,37 @@ export default class NameTypeFields extends React.Component {
     }
 
     validate() {
+        let errorExists = false;
+        if (!this.state.mapName) {
+            this.setState({
+                nameError: 'Please enter a name.',
+                nError: true
+            });
+            errorExists = true;
+        } else {
+            nError: false;
+        }
+        if (!this.state.description) {
+            this.setState({
+                descriptionError: 'Please enter a description.',
+                dError: true
+            });
+            errorExists = true;
+            // Set errormessage as this error
+            // return false
+        }
+        if (!this.state.type) {
+            this.setState({
+                typeError: 'Please select a type.',
+                tError: true
+            });
+            errorExists = true;
+        }
+        if (errorExists) {
+            return false;
+        }
         return true;
+        // Do for name and type
     }
 
     validateAndPrevious() {
@@ -92,6 +128,9 @@ export default class NameTypeFields extends React.Component {
                       value={this.state.mapName}
                       onChange={this.changeName}
                     />
+                    {this.state.nError &&
+                        <p className="error"> {this.state.nameError} </p>
+                    }
                     <label htmlFor="description">Description</label>
                     <input
                       className="gr-input gr-input--text gr-input--label form-control gr-form--control"
@@ -101,6 +140,9 @@ export default class NameTypeFields extends React.Component {
                       value={this.state.description}
                       onChange={this.changeDescription}
                     />
+                    {this.state.dError &&
+                        <p className="error"> {this.state.descriptionError} </p>
+                    }
                     <div className="gr-input--title">Select type of event</div>
                     <div
                         className="row gr-input--cards"
@@ -183,6 +225,9 @@ export default class NameTypeFields extends React.Component {
                             </label>
                         </div>
                     </div>
+                    {this.state.tError &&
+                        <p className="error"> {this.state.typeError} </p>
+                    }
                 </div>
                 <div className="gr-step--selector">
                     <button
