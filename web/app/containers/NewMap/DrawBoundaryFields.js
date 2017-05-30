@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Map, TileLayer, FeatureGroup, Polygon } from 'react-leaflet';
 import { EditControl } from 'react-leaflet-draw';
 import { Line } from 'rc-progress';
+import FontAwesome from 'react-fontawesome';
 
 const propTypes = {
     step: PropTypes.number,
@@ -22,12 +23,23 @@ export default class DrawBoundaryFields extends React.Component {
         this.state = {
             // Keeps track of if the boundary of the event has been created
             boundaryCreated: (this.props.polyCoords) ? true : false, // eslint-disable-line
+            polygonDrawn: false,
         };
 
         this.validate = this.validate.bind(this);
         this.validateAndNext = this.validateAndNext.bind(this);
         this.validateAndPrevious = this.validateAndPrevious.bind(this);
         this._onCreate = this._onCreate.bind(this);
+        this._onMount = this._onMount.bind(this);
+    }
+
+    _onMount() {
+        // Evil hack
+        const _this = this;
+
+        document.getElementsByClassName('leaflet-draw-draw-polygon')[0].addEventListener('click', function() {
+            _this.setState({ polygonDrawn: true });
+        });
     }
 
     validate() {
@@ -102,6 +114,13 @@ export default class DrawBoundaryFields extends React.Component {
                         </div>
                     </div>
                 </div>
+                <div
+                    className={`gr-map--tooltip ${(this.state.polygonDrawn && !this.state.boundaryCreated) ? 'hidden' : ''}`}
+                >
+                    <p className="gr-map--tooltip-content">
+                        <FontAwesome name="arrow-left"/> Start drawing here
+                    </p>
+                </div>
                 <div className="gr-map--wrapper">
                     <Map
                         center={position}
@@ -124,6 +143,7 @@ export default class DrawBoundaryFields extends React.Component {
                             <EditControl
                                 position="topleft"
                                 onEdited={this._onEditPath}
+                                onMounted={this._onMount}
                                 onCreated={this._onCreate}
                                 onDeleted={this._onDeleted}
                                 draw={{
