@@ -1,17 +1,30 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
-import { Map, TileLayer } from 'react-leaflet';
+import { Map, TileLayer, Polygon } from 'react-leaflet';
 
 import { MAP_EVENT } from './MapTileTypes';
 
 const MapTile = ({ data, mapless }) => {
-    const id = (data.type === MAP_EVENT) ? data.id : 'New';
-    const name = (data.type === MAP_EVENT) ? data.name : 'New';
-    const description = (data.type === MAP_EVENT) ? data.description : 'Create a new map';
+    let id = 'New';
+    let name = 'Name';
+    let description = 'Create a new map';
+
+    let polygons = null;
 
     const divStyle = {
         marginTop: 20
     };
+
+    if (data.type === MAP_EVENT) {
+        id = data.id;
+        name = data.name;
+        description = data.description;
+
+        polygons = data.points.map((point) => {
+            const position = point.boundary.points;
+            return <Polygon positions={position} />;
+        });
+    }
 
     const map = (mapless) ? null : (
         <div
@@ -30,12 +43,19 @@ const MapTile = ({ data, mapless }) => {
                     url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
                     attribution="&copy; <a href='http://osm.org/copyright'>OpenStreetMap</a> contributors"
                 />
+                <Polygon
+                    positions={data.boundary.points}
+                />
+                {polygons}
             </Map>
         </div>
     );
 
     return (
-        <Link to={`/maps/${id}`}>
+        <Link
+            className="gr-card--link"
+            to={`/maps/${id}`}
+        >
             <div className="gr-card card" style={divStyle}>
                 {map}
                 <div className="card-block">

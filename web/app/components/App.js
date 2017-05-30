@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 
 const App = ({ children }) =>
     <div>
-        <nav className="navbar navbar-toggleable-md navbar-light bg-faded">
+        { /* <nav className="navbar navbar-toggleable-md navbar-light bg-faded">
             <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
             </button>
@@ -14,8 +14,8 @@ const App = ({ children }) =>
                     </li>
                 </ul>
             </div>
-        </nav>
-        <div className="container-fluid">
+        </nav> */}
+        <div>
             { children }
         </div>
         <footer />

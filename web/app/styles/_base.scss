@@ -65,11 +65,14 @@ p {
 }
 
 h1,
+h2,
 h3,
+h4,
 h5,
 h6,
 a,
 li {
+  font-weight: 300;
   font-family: $FONT_FAMILY;
 }
 
@@ -78,6 +81,7 @@ p,
 li {
   font-family: $TEXT_FONT;
   letter-spacing: 1px;
+  font-weight: 300;
 }
 
 .vcenter-parent {
@@ -102,7 +106,15 @@ input[type="text"] {
   }
 }
 
-.ag-input {
+.gr-input {
+  border-radius: 0;
+  box-shadow: 0px 2px 20px $SHADOW_DEFAULT;
+  margin: 10px 0;
+  color: $DARK_BLUE;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 1px;
+
   &--cards {
     margin-top: 20px;
   }

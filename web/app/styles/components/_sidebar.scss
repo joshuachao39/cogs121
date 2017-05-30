@@ -1,0 +1,78 @@
+.gr-sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+
+  &--top {
+    margin-top: 20px;
+  }
+  &--bottom {
+    margin-bottom: 15px;
+  }
+  h1 {
+    font-size: 32px;
+    letter-spacing: 2px;
+  }
+  &--instruction {
+    letter-spacing: 2px;
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+  &--wrapper {
+    width: 30%;
+    overflow-y: hidden;
+    height: 100vh;
+    display: inline-block;
+    padding: 1vh 18px;
+    vertical-align: top;
+  }
+  .gr-btn {
+    display: block;
+    width: 100%;
+    float: none;
+  }
+  &--place-wrapper {
+    line-height: 40px;
+    color: $DARK_BLUE;
+    height: 40px;
+    background: $WHITE;
+    position: relative;
+    box-shadow: 0 2px 20px $SHADOW_DEFAULT;
+    margin-bottom: 10px;
+  }
+  &--color-picker {
+    z-index: 2;
+    position: absolute;
+  }
+  &--color-picker-wrapper {
+    border-radius: 0;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    outline: none;
+    border: none;
+  }
+  &--point-name {
+    input {
+      position: absolute;
+      outline: none;
+      border: none;
+      left: 40px;
+      height: 40px;
+      line-height: 40px;
+      z-index: 1;
+      display: block;
+      right: 0;
+      top: 0;
+      font-size: 14px;
+      letter-spacing: 1px;
+      padding-left: 12px;
+    }
+  }
+}
+
+.gr-progress {
+  margin-top: 30px;
+  font-size: 14px;
+}

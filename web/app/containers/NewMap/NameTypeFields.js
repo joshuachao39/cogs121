@@ -100,12 +100,12 @@ export default class NameTypeFields extends React.Component {
                       value={this.state.description}
                       onChange={this.changeType}
                     />
-                    <div className="ag-input--title">Select type of event</div>
+                    <div className="gr-input--title">Select type of event</div>
                     <div
-                        className="row ag-input--cards"
+                        className="row gr-input--cards"
                         onChange={this.changeType}
                     >
-                        <div className="col-md-3 ag-input--card">
+                        <div className="col-md-3 gr-input--card">
                             <label
                                 htmlFor="type-conference"
                                 className={(this.state.type === 'conference') ? 'selected' : ''}
@@ -116,15 +116,15 @@ export default class NameTypeFields extends React.Component {
                                     name="type"
                                     id="type-conference"
                                 />
-                                <div className="ag-input--card-icon">
+                                <div className="gr-input--card-icon">
                                     <FontAwesome name="briefcase" />
                                 </div>
-                                <div className="ag-input--card-text">
+                                <div className="gr-input--card-text">
                                     Conference
                                 </div>
                             </label>
                         </div>
-                        <div className="col-md-3 ag-input--card">
+                        <div className="col-md-3 gr-input--card">
                             <label
                                 htmlFor="type-family"
                                 className={(this.state.type === 'family') ? 'selected' : ''}
@@ -135,15 +135,15 @@ export default class NameTypeFields extends React.Component {
                                     name="type"
                                     id="type-family"
                                 />
-                                <div className="ag-input--card-icon">
+                                <div className="gr-input--card-icon">
                                     <FontAwesome name="users" />
                                 </div>
-                                <div className="ag-input--card-text">
+                                <div className="gr-input--card-text">
                                     Family
                                 </div>
                             </label>
                         </div>
-                        <div className="col-md-3 ag-input--card">
+                        <div className="col-md-3 gr-input--card">
                             <label
                                 htmlFor="type-party"
                                 className={(this.state.type === 'party') ? 'selected' : ''}
@@ -154,15 +154,15 @@ export default class NameTypeFields extends React.Component {
                                     name="type"
                                     id="type-party"
                                 />
-                                <div className="ag-input--card-icon">
+                                <div className="gr-input--card-icon">
                                     <FontAwesome name="birthday-cake" />
                                 </div>
-                                <div className="ag-input--card-text">
+                                <div className="gr-input--card-text">
                                     Party
                                 </div>
                             </label>
                         </div>
-                        <div className="col-md-3 ag-input--card">
+                        <div className="col-md-3 gr-input--card">
                             <label
                                 htmlFor="type-golf"
                                 className={(this.state.type === 'golf') ? 'selected' : ''}
@@ -173,10 +173,10 @@ export default class NameTypeFields extends React.Component {
                                     name="type"
                                     id="type-golf"
                                 />
-                                <div className="ag-input--card-icon">
+                                <div className="gr-input--card-icon">
                                     <FontAwesome name="flag" />
                                 </div>
-                                <div className="ag-input--card-text">
+                                <div className="gr-input--card-text">
                                     Golf
                                 </div>
                             </label>
@@ -191,7 +191,7 @@ export default class NameTypeFields extends React.Component {
                         Prev
                     </button>
                     <button
-                        className="btn btn-default gr-btn--right gr-btn"
+                        className="btn btn-default gr-btn--right gr-btn gr-btn--primary"
                         onClick={this.validateAndNext}
                     >
                         Next
