@@ -3,20 +3,13 @@ import { connect } from 'react-redux';
 import { filterTable } from '../actions';
 import MapList from '../components/MapList';
 
-const FilterableTable = ({ filter, onFilter }) => {
-    let input;
-
+const FilterableTable = () => {
     return (
-        <div>
-            <label>
-                Search for an event:&nbsp;
-                <input
-                    value={filter}
-                    ref={node => {input = node;}}
-                    onChange={() => onFilter(input.value)}
-                />
-            </label>
-            <MapList filter={filter} />
+        <div className="gr-filter--pad-top">
+            <div className="gr-sidebar--top container-fluid">
+                <h1>Guorient</h1>
+            </div>
+            <MapList/>
         </div>
     );
 };

@@ -7,3 +7,19 @@
   &--map {
   }
 }
+
+.gr-filter {
+  &--create-btn {
+    margin-top: 40px;
+  }
+  &--maps-label {
+    line-height: 12px;
+    font-size: 14px;
+    margin-bottom: 0;
+    margin-top: 20px;
+    width: 100%;
+  }
+  &--pad-top {
+    padding-top: 40px;
+  }
+}

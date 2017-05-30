@@ -8,15 +8,27 @@ import * as actions from '../actions';
 import MapTile from './MapTile';
 
 const propTypes = {
-    filter: PropTypes.string,
     maps: PropTypes.array,
 };
 
 class MapList extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            filter: '',
+        };
+    }
+
+    handleFilter(e) {
+        this.setState({ filter: e.target.value });
+    }
+
     render() {
         let rows = [];
 
-        const { maps, filter } = this.props;
+        const { filter } = this.state;
+        const { maps } = this.props;
 
         if (!maps) {
             return (
@@ -43,13 +55,30 @@ class MapList extends React.Component {
             }
         });
 
+        if (rows.length === 0) rows = <div className="col-sm-12">No maps to show!</div>;
+
         return (
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-md-8">
+                        <label
+                            className="gr-filter--maps-label"
+                            htmlFor="gr-filter--maps"
+                        >
+                            Search:
+                            <input
+                                id="gr-filter--maps"
+                                className="gr-input form-control"
+                                value={this.state.filter}
+                                onChange={this.handleFilter.bind(this)}
+                            />
+                        </label>
                     </div>
                     <div className="col-md-4">
-                        <Link to="maps/New" className="btn gr-btn gr-btn--success gr-btn--right">
+                        <Link
+                            to="maps/New"
+                            className="btn gr-btn gr-btn--success gr-btn--right gr-filter--create-btn"
+                        >
                             + Create
                         </Link>
                     </div>

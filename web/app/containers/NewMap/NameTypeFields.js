@@ -80,11 +80,12 @@ export default class NameTypeFields extends React.Component {
 
     render() {
         return (
-            <div className="gr-wrapper">
-                <div className="gr-form--name-type-wrapper gr-form-group form-group">
+            <div className="gr-wrapper container gr-wrapper--fullheight vcenter-parent">
+                <div className="gr-form--name-type-wrapper gr-form-group form-group vcenter">
+                    <h2>First, some info about your event</h2><br />
                     <label htmlFor="mapName">Name</label>
                     <input
-                      className="gr-map--form-control form-control gr-form--control"
+                      className="gr-input gr-input--text gr-input--label form-control gr-form--control"
                       type="text"
                       name="mapName"
                       id="mapName"
@@ -93,7 +94,7 @@ export default class NameTypeFields extends React.Component {
                     />
                     <label htmlFor="description">Description</label>
                     <input
-                      className="gr-map--form-control form-control gr-form--control"
+                      className="gr-input gr-input--text gr-input--label form-control gr-form--control"
                       type="text"
                       name="description"
                       id="description"

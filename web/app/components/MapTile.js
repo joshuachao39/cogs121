@@ -60,7 +60,7 @@ const MapTile = ({ data, mapless }) => {
                 {map}
                 <div className="card-block">
                     <h4 className="card-title">{name}</h4>
-                    <p>{description}</p>
+                    <p className="gr-card--description">{description}</p>
                 </div>
             </div>
         </Link>
