@@ -115,7 +115,7 @@ export default class DrawBoundaryFields extends React.Component {
                     </div>
                 </div>
                 <div
-                    className={`gr-map--tooltip ${(this.state.polygonDrawn && !this.state.boundaryCreated) ? 'hidden' : ''}`}
+                    className={`gr-map--tooltip ${(this.state.polygonDrawn || this.state.boundaryCreated) ? 'hidden' : ''}`}
                 >
                     <p className="gr-map--tooltip-content">
                         <FontAwesome name="arrow-left"/> Start drawing here
