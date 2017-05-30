@@ -27,16 +27,24 @@ export default class MapsList extends Component {
     const { maps } = this.props;
     const _this = this;
 
+    // to remove
+    filter = "SD";
+
     const mapList = maps.map(function(elem, i){
-      return (
-        <TouchableHighlight
-          style={styles.TouchableHighlight}
-          key={elem.name}
-          onPress={() => _this.handleOnPress(i)}
-        >
-          <Text>{elem.name}</Text>
-        </TouchableHighlight>
-      );
+      const nameLC = elem.name.toLowerCase();
+      const filterLC = filter.toLowerCase();
+
+      if (nameLC.search(filterLC) != -1) {
+        return (
+          <TouchableHighlight
+            style={styles.TouchableHighlight}
+            key={elem.name}
+            onPress={() => _this.handleOnPress(i)}
+          >
+            <Text>{elem.name}</Text>
+          </TouchableHighlight>
+        );
+      }
     });
 
     return (
