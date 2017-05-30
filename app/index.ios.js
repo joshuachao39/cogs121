@@ -5,6 +5,7 @@ import {
   StyleSheet,
   Text,
   View,
+  Image,
   TabBarIOS
 } from 'react-native';
 
@@ -85,12 +86,13 @@ export default class Places extends Component {
           selected={this.state.selectedTab === 1}
           onPress={this.handleTabPress.bind(this, 1)}
         >
-
-          <MapsList
-            loading={this.state.loading}
-            maps={this.state.maps}
-            handleMapSelection={this.handleMapSelection}
-          />
+          <Image source={require('./assets/img/gradient-background.png')} style={styles.backgroundImage}>
+            <MapsList
+              loading={this.state.loading}
+              maps={this.state.maps}
+              handleMapSelection={this.handleMapSelection}
+            />
+          </Image>
         </TabBarIOS.Item>
       </TabBarIOS>
     );
@@ -98,6 +100,11 @@ export default class Places extends Component {
 }
 
 const styles = StyleSheet.create({
+  backgroundImage: {
+    flex: 1,
+    width: null,
+    height: null
+  },
   container: {
     flex: 1,
     justifyContent: 'center',

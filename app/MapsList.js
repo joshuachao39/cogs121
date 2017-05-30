@@ -60,7 +60,6 @@ const styles = StyleSheet.create({
     paddingTop: 50,
     paddingLeft:30,
     paddingRight: 30,
-    backgroundColor: '#E3E3E3',
     flex: 1
   },
   TouchableHighlight: {
