@@ -19,7 +19,7 @@ const mapsReducer = (state, action) => {
             // TEMPORARY fix
             // Make axios request here
             // mapsData.push(newMap);
-            axios.post('http://localhost:8000/maps/new', newMap)
+            axios.post('http://guorient-backend.herokuapp.com/maps/new', newMap)
                 .then(function() {
                     console.log('Updated backend with map');
                     window.location.href = '/maps';

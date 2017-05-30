@@ -31,7 +31,7 @@ function initMaps(mapsData) {
     });
 }
 
-axios.get('http://localhost:8000/maps')
+axios.get('http://guorient-backend.herokuapp.com/maps')
     .then((res) => {
         initMaps(res.data);
     })
