@@ -42,9 +42,7 @@
     "redux-thunk": "^2.2.0",
     "url-loader": "^0.5.8",
     "webpack": "^1.15.0",
-    "webpack-dev-server": "^1.14.1"
-  },
-  "devDependencies": {
+    "webpack-dev-server": "^1.14.1",
     "autoprefixer": "^6.3.6",
     "babel-core": "^6.8.0",
     "babel-eslint": "^6.0.4",
@@ -71,5 +69,7 @@
     "stats-webpack-plugin": "^0.3.1",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7"
+  },
+  "devDependencies": {
   }
 }
