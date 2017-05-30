@@ -140,7 +140,7 @@ export default class MapsList extends Component {
     if (this.props.loading) {
       return <Text>Loading...</Text>
     }
-
+    var icon = this.state.showSearch ? require('./assets/icons/searchBlack.png') : require('./assets/icons/searchWhite.png');
     return (
       <View style={styles.view}>
         <View style={styles.headerBar}>
@@ -164,7 +164,7 @@ export default class MapsList extends Component {
                     />
                   }
                 </View>
-                 <Image source={require(this.state.searchIconPath)}
+                <Image source={icon}
                   style={styles.searchIcon}/>
               </View>
           </TouchableHighlight>
