@@ -4,8 +4,7 @@ import { Map, TileLayer, FeatureGroup, Polygon } from 'react-leaflet';
 import { EditControl } from 'react-leaflet-draw';
 import { Line } from 'rc-progress';
 
-import FontAwesome from 'react-fontawesome';
-
+import PolygonTooltip from '../../components/PolygonTooltip';
 import PointOfInterest from './PointOfInterest';
 
 const propTypes = {
@@ -181,13 +180,7 @@ export default class PointsOfInterestFields extends React.Component {
                         </div>
                     </div>
                 </div>
-                <div
-                    className={`gr-map--tooltip ${(this.state.polygonDrawn || this.props.pointsOfInterest.length !== 0) ? 'hidden' : ''}`}
-                >
-                    <p className="gr-map--tooltip-content">
-                        <FontAwesome name="arrow-left"/> Start drawing here
-                    </p>
-                </div>
+                <PolygonTooltip hide={(this.state.polygonDrawn || this.props.pointsOfInterest.length !== 0)} />
                 <div className="gr-map--wrapper">
                     <Map
                         center={position}

@@ -12,6 +12,7 @@ html,
 
 #root {
   background: $BACKGROUND_GRADIENT;
+  min-height: 100vh;
 }
 
 .btn {

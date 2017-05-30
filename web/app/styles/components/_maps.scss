@@ -1,3 +1,24 @@
+@-webkit-keyframes iconLeftRight {
+  0%   { left: 10px}
+  50%  { left: 0px; }
+  100% { left: 10px }
+}
+@-moz-keyframes iconLeftRight {
+  0%   { left: 10px}
+  50%  { left: 0px; }
+  100% { left: 10px }
+}
+@-o-keyframes iconLeftRight {
+  0%   { left: 10px}
+  50%  { left: 0px; }
+  100% { left: 10px }
+}
+@keyframes iconLeftRight {
+  0%   { left: 10px}
+  50%  { left: 0px; }
+  100% { left: 10px }
+}
+
 .gr-map {
   &--wrapper {
     position: relative;
@@ -20,6 +41,15 @@
     background-color: $WHITE;
     border: 2px solid rgba(0, 0, 0, 0.4);
     border-radius: 4px;
+  }
+  &--tooltip-icon {
+    padding-right: 10px;
+    top: -1px;
+    position: relative;
+    -webkit-animation: iconLeftRight 1s infinite; /* Safari 4+ */
+    -moz-animation:    iconLeftRight 1s infinite; /* Fx 5+ */
+    -o-animation:      iconLeftRight 1s infinite; /* Opera 12+ */
+    animation:         iconLeftRight 1s infinite; /* IE 10+, Fx 29+ */
   }
 }
 

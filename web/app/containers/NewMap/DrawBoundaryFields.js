@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import { Map, TileLayer, FeatureGroup, Polygon } from 'react-leaflet';
 import { EditControl } from 'react-leaflet-draw';
 import { Line } from 'rc-progress';
-import FontAwesome from 'react-fontawesome';
+
+import PolygonTooltip from '../../components/PolygonTooltip';
 
 const propTypes = {
     step: PropTypes.number,
@@ -114,13 +115,7 @@ export default class DrawBoundaryFields extends React.Component {
                         </div>
                     </div>
                 </div>
-                <div
-                    className={`gr-map--tooltip ${(this.state.polygonDrawn || this.state.boundaryCreated) ? 'hidden' : ''}`}
-                >
-                    <p className="gr-map--tooltip-content">
-                        <FontAwesome name="arrow-left"/> Start drawing here
-                    </p>
-                </div>
+                <PolygonTooltip hide={(this.state.polygonDrawn || this.state.boundaryCreated)} />
                 <div className="gr-map--wrapper">
                     <Map
                         center={position}
