@@ -4,6 +4,8 @@ import { Map, TileLayer, FeatureGroup, Polygon } from 'react-leaflet';
 import { EditControl } from 'react-leaflet-draw';
 import { Line } from 'rc-progress';
 
+import FontAwesome from 'react-fontawesome';
+
 import PointOfInterest from './PointOfInterest';
 
 const propTypes = {
@@ -28,12 +30,23 @@ export default class PointsOfInterestFields extends React.Component {
         this.handlePointChange = this.handlePointChange.bind(this);
 
         this._onCreate = this._onCreate.bind(this);
+        this._onMount = this._onMount.bind(this);
 
         this.state = {
             pointsOfInterest: [
                 ...this.props.pointsOfInterest,
             ],
+            polygonDrawn: false,
         };
+    }
+
+    _onMount() {
+        // Evil hack
+        const _this = this;
+
+        document.getElementsByClassName('leaflet-draw-draw-polygon')[0].addEventListener('click', function() {
+            _this.setState({ polygonDrawn: true });
+        });
     }
 
     validate() {
@@ -96,6 +109,7 @@ export default class PointsOfInterestFields extends React.Component {
             );
         }) : null;
     }
+
     /**
      * Handler to handle the creation of polygons
      */
@@ -103,6 +117,7 @@ export default class PointsOfInterestFields extends React.Component {
         // Prep datatype
         // this.props.handlePoints(e.layer._latlngs[0]);
         const newIndex = this.state.pointsOfInterest.length + 1;
+        this.setState({ polygonDrawn: true });
 
         this.setState({
             pointsOfInterest: [
@@ -166,6 +181,13 @@ export default class PointsOfInterestFields extends React.Component {
                         </div>
                     </div>
                 </div>
+                <div
+                    className={`gr-map--tooltip ${(this.state.polygonDrawn || this.props.pointsOfInterest.length !== 0) ? 'hidden' : ''}`}
+                >
+                    <p className="gr-map--tooltip-content">
+                        <FontAwesome name="arrow-left"/> Start drawing here
+                    </p>
+                </div>
                 <div className="gr-map--wrapper">
                     <Map
                         center={position}
@@ -188,13 +210,14 @@ export default class PointsOfInterestFields extends React.Component {
                             <EditControl
                                 position="topleft"
                                 onEdited={this._onEditPath}
+                                onMounted={this._onMount}
                                 onCreated={this._onCreate}
                                 onDeleted={this._onDeleted}
                                 draw={{
                                     marker: false,
                                     circle: false,
                                     rectangle: false,
-                                    line: false,
+                                    polyline: false,
                                 }}
                             />
                         </FeatureGroup>

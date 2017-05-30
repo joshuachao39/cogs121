@@ -10,6 +10,10 @@ html,
   color: $WHITE;
 }
 
+#root {
+  background: $BACKGROUND_GRADIENT;
+}
+
 .btn {
   margin: 5px 5px 15px 0px;
 }
@@ -42,6 +46,10 @@ input {
 .hero-text {
   font-size: 42px;
   display: block;
+}
+
+.hidden {
+  display: none;
 }
 
 #gl-init {

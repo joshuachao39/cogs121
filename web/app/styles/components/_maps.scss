@@ -6,11 +6,27 @@
     display: inline-block;
     z-index: 1;
   }
+  &--tooltip {
+    position: absolute;
+    top: 84px;
+    left: 30%;
+    z-index: 100;
+  }
+  &--tooltip-content {
+    position: absolute;
+    left: 50px;
+    width: 220px;
+    padding: 3px 10px;
+    background-color: $WHITE;
+    border: 2px solid rgba(0, 0, 0, 0.4);
+    border-radius: 4px;
+  }
 }
 
 .gr-newmap {
   &--wrapper {
     height: 100vh;
     overflow-y: hidden;
+    position: relative;
   }
 }
