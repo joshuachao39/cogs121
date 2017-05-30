@@ -1,7 +1,11 @@
 .gr-featurette {
   position: relative;
   margin-top: 80px;
+  width: 100%;
 
+  p {
+    color: $WHITE;
+  }
   &>.container {
     position: static;
   }
@@ -15,17 +19,15 @@
     background: url('../public/featurette_1.png') no-repeat center center;
     background-size: contain;
     height: 420px;
-    min-height: 60vh;
+    min-height: 64vh;
     position: absolute;
-    right: -30px;
+    right: -100px;
   }
   &--second {
     background: url('../public/featurette_2.png') no-repeat center center;
     background-size: contain;
     height: 420px;
-    min-height: 60vh;
-    // position: absolute;
-    // left: -80px;
+    min-height: 64vh;
     position: absolute;
     left: -100px;
   }
@@ -62,5 +64,5 @@
 
 .stretch {
   height: 420px;
-  min-height: 60vh;
+  min-height: 64vh;
 }

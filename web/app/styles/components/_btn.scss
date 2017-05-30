@@ -1,7 +1,39 @@
+@mixin setBgAndHover($baseColor) {
+  background-color: $baseColor;
+
+  &:hover,
+  &:active,
+  &:focus {
+    background-color: lighten($baseColor, 5%);
+    color: $WHITE;
+  }
+}
+
 .gr-btn {
-	&--right {
-		.gr-btn {
-			background-color: white;
-		}
-	}
+  @include setBgAndHover($PINK_1);
+  min-width: 180px;
+  min-height: 36px;
+  line-height: 36px;
+  border-radius: 18px;
+  padding: 0;
+  box-shadow: 0 2px 20px $SHADOW_DEFAULT;
+  color: $WHITE;
+  font-family: $TEXT_FONT;
+  letter-spacing: 3px;
+  font-size: 14px;
+  font-weight: 300;
+  cursor: pointer;
+
+  &--right {
+    float: right;
+  }
+  &--success {
+    @include setBgAndHover($GREEN_1);
+  }
+  &--primary {
+    @include setBgAndHover($BLUE_2);
+  }
+  &--fullwidth {
+    display: block;
+  }
 }

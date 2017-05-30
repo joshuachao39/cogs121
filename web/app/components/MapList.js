@@ -1,41 +1,38 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
 
 import * as actions from '../actions';
 
 import MapTile from './MapTile';
-import { MAP_NEW } from './MapTileTypes';
-// import { mapList } from '../styles/mapList.scss';
 
 const propTypes = {
-    filter: PropTypes.string,
     maps: PropTypes.array,
 };
 
 class MapList extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            filter: '',
+        };
+    }
+
+    handleFilter(e) {
+        this.setState({ filter: e.target.value });
+    }
+
     render() {
         let rows = [];
-        let newrow = [];
 
-        const { maps, filter } = this.props;
-
-        newrow.push(
-            <div className="col-sm-12">
-                <MapTile
-                    key={'new'}
-                    data={{ type: MAP_NEW }}
-                    mapless={true}
-                />
-            </div>
-        );
+        const { filter } = this.state;
+        const { maps } = this.props;
 
         if (!maps) {
             return (
                 <div>
-                    <div id="newrow">
-                        {newrow}
-                    </div>
                     No maps to show
                 </div>
             );
@@ -48,16 +45,43 @@ class MapList extends React.Component {
             if (nameLC.indexOf(filterLC) !== -1) {
                 rows.push(
                     <div className="col-md-4">
-                        <MapTile key={elem.name} data={elem} mapless={false} />
+                        <MapTile
+                            key={elem.name}
+                            data={elem}
+                            mapless={false}
+                        />
                     </div>
                 );
             }
         });
 
+        if (rows.length === 0) rows = <div className="col-sm-12">No maps to show!</div>;
+
         return (
-            <div>
-                <div id="newrow" className="row">
-                    {newrow}
+            <div className="container-fluid">
+                <div className="row">
+                    <div className="col-md-8">
+                        <label
+                            className="gr-filter--maps-label"
+                            htmlFor="gr-filter--maps"
+                        >
+                            Search:
+                            <input
+                                id="gr-filter--maps"
+                                className="gr-input form-control"
+                                value={this.state.filter}
+                                onChange={this.handleFilter.bind(this)}
+                            />
+                        </label>
+                    </div>
+                    <div className="col-md-4">
+                        <Link
+                            to="maps/New"
+                            className="btn gr-btn gr-btn--success gr-btn--right gr-filter--create-btn"
+                        >
+                            + Create
+                        </Link>
+                    </div>
                 </div>
                 <div id="row" className="row">
                     {rows}

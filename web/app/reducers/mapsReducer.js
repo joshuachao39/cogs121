@@ -22,6 +22,7 @@ const mapsReducer = (state, action) => {
             axios.post('http://localhost:8000/maps/new', newMap)
                 .then(function() {
                     console.log('Updated backend with map');
+                    window.location.href = '/maps';
                 })
                 .catch(function(err) {
                     console.log(err);

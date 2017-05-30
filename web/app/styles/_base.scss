@@ -65,12 +65,16 @@ p {
 }
 
 h1,
+h2,
 h3,
+h4,
 h5,
 h6,
 a,
 li {
+  font-weight: 300;
   font-family: $FONT_FAMILY;
+  letter-spacing: 1px;
 }
 
 a,
@@ -78,12 +82,19 @@ p,
 li {
   font-family: $TEXT_FONT;
   letter-spacing: 1px;
+  font-weight: 300;
 }
 
 .vcenter-parent {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+}
+
+.gr-wrapper {
+  &--fullheight {
+    height: 100vh;
+  }
 }
 
 input[type="radio"] {
@@ -102,30 +113,48 @@ input[type="text"] {
   }
 }
 
-.ag-input {
+.navbar-fixed {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.gr-input {
+  border-radius: 0;
+  box-shadow: 0px 2px 20px $SHADOW_DEFAULT;
+  margin: 10px 0;
+  color: $DARK_BLUE;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 1px;
+
+  &--text {
+    margin-top: 0 !important;
+    margin-bottom: 20px !important
+  }
   &--cards {
     margin-top: 20px;
   }
   &--card {
     label {
-      border-radius: 4px;
+      box-shadow: 0px 2px 20px $SHADOW_DEFAULT;
       background-color: $WHITE;
       display: block;
       text-align: center;
-      color: $GRAY_1;
+      color: $DARK_BLUE;
       padding-bottom: 30px;
       transition: all 0.3s ease-in-out;
       position: relative;
       box-sizing: border-box;
-      border: 2px solid;
 
-      &.selected {
-        color: $PURPLE_1;
-      }
       &:hover {
+        color: lighten($DARK_BLUE, 10);
         transition: all 0.2s ease-in-out;
-        box-shadow: 0 2px 20px $GRAY_1;
         cursor: pointer;
+      }
+      &.selected {
+        outline: 2px solid;
+        color: $PINK_1;
       }
     }
   }

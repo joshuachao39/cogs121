@@ -1,15 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
-import { MAP_EVENT } from '../../components/MapTileTypes';
 
 const propTypes = {
+    mapName: PropTypes.string,
+    type: PropTypes.string,
     handleInit: PropTypes.func,
     nextStep: PropTypes.func,
     prevStep: PropTypes.func,
+    description: PropTypes.string,
 };
 
 const defaultProps = {
+    mapName: '',
+    description: '',
+    type: '',
     handleInit() {},
     nextStep() {},
     prevStep() {},
@@ -20,8 +25,9 @@ export default class NameTypeFields extends React.Component {
         super(props);
 
         this.state = {
-            mapName: 'New Map',
-            type: MAP_EVENT,
+            mapName: this.props.mapName,
+            description: this.props.description,
+            type: this.props.type,
         };
 
         this.changeName = this.changeName.bind(this);
@@ -62,16 +68,10 @@ export default class NameTypeFields extends React.Component {
     }
 
     validateAndPrevious() {
-        if (this.validate()) {
-            this.props.handleInit(this.state.mapName, this.state.description, this.state.type);
-            this.props.prevStep();
-        }
+        window.location.href = '/maps';
     }
 
     validateAndNext() {
-        console.log(this.state.mapName);
-        console.log(this.state.description);
-        console.log(this.state.type);
         if (this.validate()) {
             this.props.handleInit(this.state.mapName, this.state.description, this.state.type);
             this.props.nextStep();
@@ -80,11 +80,12 @@ export default class NameTypeFields extends React.Component {
 
     render() {
         return (
-            <div className="gr-wrapper">
-                <div className="gr-form--name-type-wrapper gr-form-group form-group">
+            <div className="gr-wrapper container gr-wrapper--fullheight vcenter-parent">
+                <div className="gr-form--name-type-wrapper gr-form-group form-group vcenter">
+                    <h2>First, some info about your event</h2><br />
                     <label htmlFor="mapName">Name</label>
                     <input
-                      className="gr-map--form-control form-control gr-form--control"
+                      className="gr-input gr-input--text gr-input--label form-control gr-form--control"
                       type="text"
                       name="mapName"
                       id="mapName"
@@ -93,19 +94,19 @@ export default class NameTypeFields extends React.Component {
                     />
                     <label htmlFor="description">Description</label>
                     <input
-                      className="gr-map--form-control form-control gr-form--control"
+                      className="gr-input gr-input--text gr-input--label form-control gr-form--control"
                       type="text"
                       name="description"
                       id="description"
                       value={this.state.description}
-                      onChange={this.changeType}
+                      onChange={this.changeDescription}
                     />
-                    <div className="ag-input--title">Select type of event</div>
+                    <div className="gr-input--title">Select type of event</div>
                     <div
-                        className="row ag-input--cards"
+                        className="row gr-input--cards"
                         onChange={this.changeType}
                     >
-                        <div className="col-md-3 ag-input--card">
+                        <div className="col-md-3 gr-input--card">
                             <label
                                 htmlFor="type-conference"
                                 className={(this.state.type === 'conference') ? 'selected' : ''}
@@ -116,15 +117,15 @@ export default class NameTypeFields extends React.Component {
                                     name="type"
                                     id="type-conference"
                                 />
-                                <div className="ag-input--card-icon">
+                                <div className="gr-input--card-icon">
                                     <FontAwesome name="briefcase" />
                                 </div>
-                                <div className="ag-input--card-text">
+                                <div className="gr-input--card-text">
                                     Conference
                                 </div>
                             </label>
                         </div>
-                        <div className="col-md-3 ag-input--card">
+                        <div className="col-md-3 gr-input--card">
                             <label
                                 htmlFor="type-family"
                                 className={(this.state.type === 'family') ? 'selected' : ''}
@@ -135,15 +136,15 @@ export default class NameTypeFields extends React.Component {
                                     name="type"
                                     id="type-family"
                                 />
-                                <div className="ag-input--card-icon">
+                                <div className="gr-input--card-icon">
                                     <FontAwesome name="users" />
                                 </div>
-                                <div className="ag-input--card-text">
+                                <div className="gr-input--card-text">
                                     Family
                                 </div>
                             </label>
                         </div>
-                        <div className="col-md-3 ag-input--card">
+                        <div className="col-md-3 gr-input--card">
                             <label
                                 htmlFor="type-party"
                                 className={(this.state.type === 'party') ? 'selected' : ''}
@@ -154,30 +155,30 @@ export default class NameTypeFields extends React.Component {
                                     name="type"
                                     id="type-party"
                                 />
-                                <div className="ag-input--card-icon">
+                                <div className="gr-input--card-icon">
                                     <FontAwesome name="birthday-cake" />
                                 </div>
-                                <div className="ag-input--card-text">
+                                <div className="gr-input--card-text">
                                     Party
                                 </div>
                             </label>
                         </div>
-                        <div className="col-md-3 ag-input--card">
+                        <div className="col-md-3 gr-input--card">
                             <label
-                                htmlFor="type-golf"
-                                className={(this.state.type === 'golf') ? 'selected' : ''}
+                                htmlFor="type-other"
+                                className={(this.state.type === 'other') ? 'selected' : ''}
                             >
                                 <input
                                     type="radio"
-                                    value="golf"
+                                    value="other"
                                     name="type"
-                                    id="type-golf"
+                                    id="type-other"
                                 />
-                                <div className="ag-input--card-icon">
-                                    <FontAwesome name="flag" />
+                                <div className="gr-input--card-icon">
+                                    <FontAwesome name="question" />
                                 </div>
-                                <div className="ag-input--card-text">
-                                    Golf
+                                <div className="gr-input--card-text">
+                                    Other
                                 </div>
                             </label>
                         </div>
@@ -188,10 +189,10 @@ export default class NameTypeFields extends React.Component {
                         className="btn btn-default gr-btn--left gr-btn"
                         onClick={this.validateAndPrevious}
                     >
-                        Prev
+                        Back
                     </button>
                     <button
-                        className="btn btn-default gr-btn--right gr-btn"
+                        className="btn btn-default gr-btn--right gr-btn gr-btn--primary"
                         onClick={this.validateAndNext}
                     >
                         Next

@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Line } from 'rc-progress';
 
 import * as actions from '../../actions';
 
@@ -55,7 +54,7 @@ class NewMapContainer extends React.Component {
                 ...this.state.newMap,
                 name,
                 description,
-                type: 'MAP_EVENT',
+                type,
             },
         });
         console.log(this.state.newMap);
@@ -95,18 +94,13 @@ class NewMapContainer extends React.Component {
     /**
      * Handles drawing of points
      */
-    handlePoints(latlngs) {
+    handlePoints(pointsOfInterest) {
         this.setState({
             newMap: {
                 ...this.state.newMap,
                 points: [
-                    ...this.state.newMap.points,
-                    {
-                        name: 'New point',
-                        boundary: {
-                            points: latlngs,
-                        },
-                    },
+                    // ...this.state.newMap.points,
+                    ...pointsOfInterest,
                 ],
             },
         });
@@ -142,12 +136,16 @@ class NewMapContainer extends React.Component {
     }
 
     render() {
+        const { newMap, step } = this.state;
         let fields = <div />;
-        let percent = (this.state.step / 4) * 100;
         switch (this.state.step) {
             case 0: {
                 fields = (
                     <NameTypeFields
+                        mapName={newMap.name}
+                        description={newMap.description}
+                        type={newMap.type}
+                        step={step}
                         handleInit={this.handleInit}
                         nextStep={this.nextStep}
                         prevStep={this.prevStep}
@@ -158,6 +156,7 @@ class NewMapContainer extends React.Component {
             case 1: {
                 fields = (
                     <LocationFields
+                        step={step}
                         handleLocation={this.handleLocation}
                         nextStep={this.nextStep}
                         prevStep={this.prevStep}
@@ -168,9 +167,10 @@ class NewMapContainer extends React.Component {
             case 2: {
                 fields = (
                     <DrawBoundaryFields
-                        polyCoords={this.state.newMap.boundary.points}
+                        step={step}
+                        polyCoords={newMap.boundary.points}
                         handleBoundaries={this.handleBoundaries}
-                        position={this.state.newMap.coords}
+                        position={newMap.coords}
                         nextStep={this.nextStep}
                         prevStep={this.prevStep}
                     />
@@ -180,8 +180,10 @@ class NewMapContainer extends React.Component {
             case 3: {
                 fields = (
                     <PointsOfInterestFields
-                        polyCoords={this.state.newMap.boundary.points}
-                        position={this.state.newMap.coords}
+                        step={step}
+                        pointsOfInterest={newMap.points}
+                        polyCoords={newMap.boundary.points}
+                        position={newMap.coords}
                         handlePoints={this.handlePoints}
                         nextStep={this.nextStep}
                         prevStep={this.prevStep}
@@ -192,9 +194,14 @@ class NewMapContainer extends React.Component {
             case 4: {
                 fields = (
                     <FinalizeFields
-                        polyCoords={this.state.newMap.boundary.points}
-                        pointsOfInterest={this.state.newMap.points}
-                        position={this.state.newMap.coords}
+                        step={step}
+                        name={newMap.name}
+                        description={newMap.description}
+                        type={newMap.type}
+                        locationName={newMap.locationName}
+                        polyCoords={newMap.boundary.points}
+                        pointsOfInterest={newMap.points}
+                        position={newMap.coords}
                         handleSubmit={this.handleSubmit}
                         prevStep={this.prevStep}
                     />
@@ -208,13 +215,6 @@ class NewMapContainer extends React.Component {
 
         return (
             <div>
-                <div className="gr-progress">
-                    Step {this.state.step + 1} of 5
-                    <Line
-                        percent={percent}
-                        strokeColor="#EB3986"
-                    />
-                </div>
                 {fields}
             </div>
         );
