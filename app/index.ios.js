@@ -88,8 +88,8 @@ export default class Places extends Component {
         >
           <Image source={require('./assets/img/gradient-background.png')} style={styles.backgroundImage}>
             <MapsList
-              loading={this.state.loading}
-              maps={this.state.maps}
+              loading={loading}
+              maps={maps}
               handleMapSelection={this.handleMapSelection}
             />
           </Image>

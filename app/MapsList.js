@@ -79,9 +79,13 @@ export default class MapsList extends Component {
    * what current view is selected
    */
   renderMapList() {
-    const { maps } = this.props;
+    const { maps, loading } = this.props;
     const _this = this;
 
+    if (loading) {
+      console.log('loading');
+      return <Text>Loading...</Text>;
+    }
     const { searchFilter } = this.state;
 
     return maps.map(function(elem, i){
@@ -140,6 +144,7 @@ export default class MapsList extends Component {
     if (this.props.loading) {
       return <Text>Loading...</Text>
     }
+
     var icon = this.state.showSearch ? require('./assets/icons/searchBlack.png') : require('./assets/icons/searchWhite.png');
     return (
       <View style={styles.view}>

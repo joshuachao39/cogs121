@@ -31,10 +31,12 @@ export default class EventMap extends Component {
       },
       receivedProps: false,
       mapMarkers: [],
+      showInfo: null,
     };
 
     this.onRegionChange = this.onRegionChange.bind(this);
     this.handleOnPress = this.handleOnPress.bind(this);
+    this.navigate = this.navigate.bind(this);
   }
 
   handleNavigation(la, lo) {
@@ -78,15 +80,33 @@ export default class EventMap extends Component {
     };
     console.log(center);
 
+    // Filter out from existing markers
+    if (this.state.mapMarkers.filter((elem) => {
+      return (elem.title === name);
+    })) {
+      this.setState({
+        mapMarkers: [
+          ...this.state.mapMarkers,
+          {
+            name,
+            center,
+          },
+        ],
+      });
+    }
+  }
+
+  toggleInfo(toggleType, marker) {
     this.setState({
-      mapMarkers: [
-        ...this.state.mapMarkers,
-        {
-          name,
-          center,
-        },
-      ],
+      showInfo: (toggleType === 'show') ? marker : null,
     });
+  }
+
+  navigate(coords) {
+    const rla = coords.latitude;
+    const rlo = coords.longitude;
+    const url = `http://maps.apple.com/?daddr=${rla},${rlo}`;//`&daddr=${la},${lo}&dirflg=d`;
+    return Linking.openURL(url);
   }
 
   render() {
@@ -107,11 +127,13 @@ export default class EventMap extends Component {
       });
 
       return (
+        //polygon for each polygon's set of pooints,
+        //onPress set current marker to visible
         <Polygon
           key={JSON.stringify(coords)}
           coordinates={coords}
-          strokeColor={'rgba(17,205,134,0.5)'}
-          fillColor={'rgba(17,205,134,0.5)'}
+          strokeColor={pts.color || 'rgba(17, 205, 134, 0.5)'}
+          fillColor={pts.color || 'rgba(17,205,134,0.5)'}
           onPress={() => _this.handleOnPress(pts.name, coords)}
         />
       );
@@ -119,11 +141,22 @@ export default class EventMap extends Component {
 
     const mapMarkersRendered = this.state.mapMarkers.map((marker) => {
       const { name, center } = marker;
+
       return (
         <MapView.Marker
-          title={name}
           coordinate={center}
-        />
+        >
+          <MapView.Callout tooltip={true}>
+            <View style={styles.callout}>
+              <Text>{name}</Text>
+              <TouchableHighlight
+                onPress={() => _this.navigate(center)}
+              >
+                <Text>Navigate</Text>
+              </TouchableHighlight>
+            </View>
+          </MapView.Callout>
+        </MapView.Marker>
       );
     });
 
@@ -140,9 +173,6 @@ export default class EventMap extends Component {
       latitudeDelta: 0.01,
       longitudeDelta: 0.01,
     };
-
-    // alert(JSON.stringify(coords));
-    // alert(JSON.stringify(this.state.region));
 
     return (
       <MapView
@@ -166,6 +196,10 @@ export default class EventMap extends Component {
 }
 
 const styles = StyleSheet.create({
+  callout: {
+    backgroundColor: '#fafafa',
+    padding: 10
+  },
   map: {
     flex: 1
   },
