@@ -14,3 +14,14 @@ export function addMap(newMap) {
         payload: newMap,
     };
 }
+
+export function initMaps(mapsData) {
+    console.log('init maps data');
+    console.log(mapsData);
+    return {
+        type: types.INIT_MAPS,
+        payload: {
+            data: mapsData,
+        },
+    };
+}

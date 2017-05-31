@@ -6,9 +6,11 @@ import { Link } from 'react-router';
 import * as actions from '../actions';
 
 import MapTile from './MapTile';
+import axios from 'axios';
 
 const propTypes = {
     maps: PropTypes.array,
+    initMaps: PropTypes.func,
 };
 
 class MapList extends React.Component {
@@ -20,6 +22,16 @@ class MapList extends React.Component {
         };
     }
 
+    componentWillMount() {
+        axios.get('https://guorient-backend.herokuapp.com/maps')
+            .then((res) => {
+                this.props.initMaps(res.data);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }
+
     handleFilter(e) {
         this.setState({ filter: e.target.value });
     }
@@ -29,6 +41,10 @@ class MapList extends React.Component {
 
         const { filter } = this.state;
         const { maps } = this.props;
+
+        console.log(maps);
+
+        console.log(this.props);
 
         if (maps) {
             maps.forEach((elem) => {
