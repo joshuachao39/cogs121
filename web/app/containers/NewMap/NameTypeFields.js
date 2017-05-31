@@ -86,8 +86,6 @@ export default class NameTypeFields extends React.Component {
                 dError: true
             });
             errorExists = true;
-            // Set errormessage as this error
-            // return false
         }
         if (!this.state.type) {
             this.setState({
@@ -100,7 +98,6 @@ export default class NameTypeFields extends React.Component {
             return false;
         }
         return true;
-        // Do for name and type
     }
 
     validateAndPrevious() {
