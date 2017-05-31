@@ -33,6 +33,7 @@ export default class EventMap extends Component {
     };
 
     this.onRegionChange = this.onRegionChange.bind(this);
+    this.handleOnPress = this.handleOnPress.bind(this);
   }
 
   handleNavigation(la, lo) {
@@ -62,8 +63,25 @@ export default class EventMap extends Component {
     });
   }
 
+  handleOnPress(i){
+  //   const {currMap} = this.props;
+  //   var gju = require('geojson-utils');
+  //   const
+  //   // map function for each Polygon(boundary)
+  //   //   map function for points of interest
+  //   //     if the point is in this polygon
+  //       if gju.pointInPolygon({"type":"Point","coordinates":i},
+  //                 {"type":"Polygon", "coordinates":/*this polygon*/})
+  //       //add a marker to the map with a big name of the POI
+  //   //if the point is within boundary but not in subregions
+  //   if /*not having something happening with points*/ && gju.pointInPolygon()
+  //       //add a marker to the map with a big name of the boundary
+    console.log(i);
+  }
+
   render() {
     const { currMap, maps, loading } = this.props;
+    const _this = this;
 
     if (loading) {
       return <Text>Loading...</Text>;
@@ -84,6 +102,7 @@ export default class EventMap extends Component {
           coordinates={coords}
           strokeColor={'rgba(17,205,134,0.5)'}
           fillColor={'rgba(17,205,134,0.5)'}
+          onPress={_this.handleOnPress}
         />
       );
     });

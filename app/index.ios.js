@@ -31,7 +31,7 @@ export default class Places extends Component {
   getMaps() {
     const _this = this;
 
-    axios.get('http://localhost:8000/maps')
+    axios.get('https://guorient-backend.herokuapp.com/maps')
       .then((res) => {
         _this.setState({
           loading: false,
