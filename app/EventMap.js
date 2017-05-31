@@ -30,6 +30,7 @@ export default class EventMap extends Component {
         longitudeDelta: 0.01,
       },
       receivedProps: false,
+      mapMarkers: [],
     };
 
     this.onRegionChange = this.onRegionChange.bind(this);
@@ -63,20 +64,29 @@ export default class EventMap extends Component {
     });
   }
 
-  handleOnPress(i){
-  //   const {currMap} = this.props;
-  //   var gju = require('geojson-utils');
-  //   const
-  //   // map function for each Polygon(boundary)
-  //   //   map function for points of interest
-  //   //     if the point is in this polygon
-  //       if gju.pointInPolygon({"type":"Point","coordinates":i},
-  //                 {"type":"Polygon", "coordinates":/*this polygon*/})
-  //       //add a marker to the map with a big name of the POI
-  //   //if the point is within boundary but not in subregions
-  //   if /*not having something happening with points*/ && gju.pointInPolygon()
-  //       //add a marker to the map with a big name of the boundary
-    console.log(i);
+  handleOnPress(name, coords){
+    console.log(coords);
+    let totaLat= 0;
+    let totaLng = 0;
+    for (let i=0;i<coords.length;i++){
+        totaLat = totaLat + coords[i].latitude;
+        totaLng = totaLng + coords[i].longitude;
+    }
+    const center = {
+      latitude: totaLat/coords.length,
+      longitude: totaLng/coords.length,
+    };
+    console.log(center);
+
+    this.setState({
+      mapMarkers: [
+        ...this.state.mapMarkers,
+        {
+          name,
+          center,
+        },
+      ],
+    });
   }
 
   render() {
@@ -102,7 +112,17 @@ export default class EventMap extends Component {
           coordinates={coords}
           strokeColor={'rgba(17,205,134,0.5)'}
           fillColor={'rgba(17,205,134,0.5)'}
-          onPress={_this.handleOnPress}
+          onPress={() => _this.handleOnPress(pts.name, coords)}
+        />
+      );
+    });
+
+    const mapMarkersRendered = this.state.mapMarkers.map((marker) => {
+      const { name, center } = marker;
+      return (
+        <MapView.Marker
+          title={name}
+          coordinate={center}
         />
       );
     });
@@ -133,6 +153,7 @@ export default class EventMap extends Component {
       >
         <Polygon coordinates={borderPoints} />
         {interests}
+        {mapMarkersRendered}
       </MapView>
     );
 
