@@ -33,8 +33,7 @@ class MapContainer extends React.Component {
     }
 
     renderPolygons() {
-        const mapId = parseInt(this.props.params.mapId, 10);
-        const map = this.props.maps[mapId];
+        const map = this.state.map;
 
         return (map.points) ? map.points.map((point) => {
             const position = point.boundary.points;

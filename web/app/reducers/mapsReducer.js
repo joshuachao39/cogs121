@@ -27,8 +27,10 @@ const mapsReducer = (state, action) => {
                     console.log(err);
                 });
 
+            const stateCpy = (state) ? [...state] : [];
+
             return [
-                ...state,
+                ...stateCpy,
                 newMap,
             ];
         default:
