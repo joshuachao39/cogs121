@@ -47,7 +47,7 @@ class MapList extends React.Component {
         console.log(this.props);
 
         if (maps) {
-            maps.forEach((elem) => {
+            maps.forEach((elem, i) => {
                 const nameLC = elem.name.toLowerCase();
                 const filterLC = filter.toLowerCase();
 
@@ -57,6 +57,7 @@ class MapList extends React.Component {
                             <MapTile
                                 key={elem.name}
                                 data={elem}
+                                index={i}
                                 mapless={false}
                             />
                         </div>

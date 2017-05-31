@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import { Map, TileLayer, Polygon } from 'react-leaflet';
 
-const MapTile = ({ data, mapless }) => {
+const MapTile = ({ data, index, mapless }) => {
     let id = 'New';
     let name = 'Name';
     let description = 'Create a new map';
@@ -13,7 +13,7 @@ const MapTile = ({ data, mapless }) => {
         marginTop: 20
     };
 
-    id = data.id;
+    id = data.index;
     name = data.name;
     description = data.description;
 
