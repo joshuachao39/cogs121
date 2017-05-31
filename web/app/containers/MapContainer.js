@@ -3,6 +3,7 @@ import { Map, TileLayer, Polygon } from 'react-leaflet';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import FontAwesome from 'react-fontawesome';
+import axios from 'axios';
 
 import * as actions from '../actions';
 
@@ -10,15 +11,32 @@ class MapContainer extends React.Component {
     constructor(props) {
         super(props);
 
-        this.mapId = parseInt(this.props.params.mapId, 10);
-        this.map = this.props.maps[this.mapId];
-
         // TODO: this.map is undefined -> 404 error
         this.renderPolygons = this.renderPolygons.bind(this);
+        this.state = {
+            map: undefined,
+        };
+    }
+
+    componentWillMount() {
+        const mapId = parseInt(this.props.params.mapId, 10);
+        console.log(`making request to get map ${mapId}`);
+
+        axios.get(`https://guorient-backend.herokuapp.com/maps/${mapId}`)
+            .then((res) => {
+                console.log(res.data);
+                this.setState({ map: res.data });
+            })
+            .catch((err) => {
+                console.log(err);
+            });
     }
 
     renderPolygons() {
-        return (this.map.points) ? this.map.points.map((point) => {
+        const mapId = parseInt(this.props.params.mapId, 10);
+        const map = this.props.maps[mapId];
+
+        return (map.points) ? map.points.map((point) => {
             const position = point.boundary.points;
             return (
                 <Polygon
@@ -31,27 +49,37 @@ class MapContainer extends React.Component {
     }
 
     render() {
-        const { name, description, type, locationName } = this.map;
+        if (!this.state.map) {
+            console.log('map not loaded');
+            return <div>Loading</div>;
+        }
+
+        console.log('map is defined');
+        console.log(this.state.map);
+
+        const map = this.state.map;
+
+        const { name, description, type, locationName } = map;
 
         const position = {
-            lat: this.map.coords.lat,
-            lng: this.map.coords.lng,
+            lat: map.coords.lat,
+            lng: map.coords.lng,
         };
 
         const positions = [];
-        this.map.boundary.points.forEach((elem) => {
+        map.boundary.points.forEach((elem) => {
             positions.push([ elem.lat, elem.lng ]);
         });
 
         const renderedPointsOfInterest = this.renderPolygons();
-        const pointsOfInterest = this.map.points;
+        const pointsOfInterest = map.points;
 
         return (
             <div className="gr-wrapper gr-newmap--wrapper">
                 <div className="gr-sidebar--wrapper">
                     <div className="gr-sidebar">
                         <div className="gr-sidebar--top">
-                            <h1>{this.map.name}</h1>
+                            <h1>{map.name}</h1>
                         </div>
                         <div className="vcenter form-group">
                             <h4 className="gr-sidebar--instruction">
@@ -126,6 +154,7 @@ MapContainer.propTypes = {
     mapName: PropTypes.string,
     params: PropTypes.object,
     maps: PropTypes.array,
+    initMaps: PropTypes.func,
 };
 
 function mapStateToProps(state) {
