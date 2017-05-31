@@ -16,7 +16,7 @@
     "url": "https://github.com/liawesomesaucer/cogs121/issues"
   },
   "scripts": {
-    "start": "cd server && npm install && npm start"
+    "start": "cd web && npm install && npm start"
   },
   "homepage": "https://github.com/liawesomesaucer/cogs121#readme"
 }
