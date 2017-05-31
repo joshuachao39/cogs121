@@ -9,7 +9,7 @@
     "dev": "node server",
     "build": "NODE_ENV=production && webpack --config ./webpack.production.config.js --progress --profile --colors",
     "eslint": "eslint .",
-    "heroku-postbuild": "webpack -p --config ./webpack.production.config.js --progress"
+    "heroku-postbuild": "npm run build"
   },
   "keywords": [
     "es6",
