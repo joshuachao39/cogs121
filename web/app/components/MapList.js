@@ -30,30 +30,24 @@ class MapList extends React.Component {
         const { filter } = this.state;
         const { maps } = this.props;
 
-        if (!maps) {
-            return (
-                <div>
-                    No maps to show
-                </div>
-            );
+        if (maps) {
+            maps.forEach((elem) => {
+                const nameLC = elem.name.toLowerCase();
+                const filterLC = filter.toLowerCase();
+
+                if (nameLC.indexOf(filterLC) !== -1) {
+                    rows.push(
+                        <div className="col-md-4">
+                            <MapTile
+                                key={elem.name}
+                                data={elem}
+                                mapless={false}
+                            />
+                        </div>
+                    );
+                }
+            });
         }
-
-        maps.forEach((elem) => {
-            const nameLC = elem.name.toLowerCase();
-            const filterLC = filter.toLowerCase();
-
-            if (nameLC.indexOf(filterLC) !== -1) {
-                rows.push(
-                    <div className="col-md-4">
-                        <MapTile
-                            key={elem.name}
-                            data={elem}
-                            mapless={false}
-                        />
-                    </div>
-                );
-            }
-        });
 
         if (rows.length === 0) rows = <div className="col-sm-12">No maps to show!</div>;
 
