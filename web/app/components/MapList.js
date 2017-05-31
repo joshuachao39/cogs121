@@ -53,30 +53,40 @@ class MapList extends React.Component {
 
         return (
             <div className="container-fluid">
-                <div className="row">
-                    <div className="col-md-8">
-                        <label
-                            className="gr-filter--maps-label"
-                            htmlFor="gr-filter--maps"
-                        >
-                            Search:
-                            <input
-                                id="gr-filter--maps"
-                                className="gr-input form-control"
-                                value={this.state.filter}
-                                onChange={this.handleFilter.bind(this)}
-                            />
-                        </label>
+                {maps &&
+                    <div className="row">
+                        <div className="col-md-8">
+                            <label
+                                className="gr-filter--maps-label"
+                                htmlFor="gr-filter--maps"
+                            >
+                                Search:
+                                <input
+                                    id="gr-filter--maps"
+                                    className="gr-input form-control"
+                                    value={this.state.filter}
+                                    onChange={this.handleFilter.bind(this)}
+                                />
+                            </label>
+                        </div>
+                        <div className="col-md-4">
+                            <Link
+                                to="maps/New"
+                                className="btn gr-btn gr-btn--success gr-btn--right gr-filter--create-btn"
+                            >
+                                + Create
+                            </Link>
+                        </div>
                     </div>
-                    <div className="col-md-4">
-                        <Link
-                            to="maps/New"
-                            className="btn gr-btn gr-btn--success gr-btn--right gr-filter--create-btn"
-                        >
-                            + Create
-                        </Link>
-                    </div>
-                </div>
+                }
+                {!maps &&
+                    <Link
+                        to="maps/New"
+                        className="btn gr-btn gr-btn--success gr-filter--create-btn"
+                    >
+                        + Create
+                    </Link>
+                }
                 <div id="row" className="row">
                     {rows}
                 </div>
