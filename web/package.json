@@ -7,7 +7,8 @@
     "test": "",
     "start": "node server",
     "build": "rimraf dist && webpack --config ./webpack.production.config.js --progress --profile --colors",
-    "eslint": "eslint ."
+    "eslint": "eslint .",
+    "heroku-postbuild": "webpack -p --config ./webpack.prod.config.js --progress"
   },
   "keywords": [
     "es6",
@@ -40,7 +41,8 @@
     "redux-axios-middleware": "^4.0.0",
     "redux-logger": "^2.7.4",
     "redux-thunk": "^2.2.0",
-    "url-loader": "^0.5.8"
+    "url-loader": "^0.5.8",
+    "webpack": "^1.15.0"
   },
   "devDependencies": {
     "autoprefixer": "^6.3.6",
@@ -69,7 +71,6 @@
     "stats-webpack-plugin": "^0.3.1",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
-    "webpack": "^1.15.0",
     "webpack-dev-server": "^1.14.1"
   }
 }
