@@ -11,10 +11,11 @@ const mapsReducer = (state, action) => {
         case types.ADD_MAP:
             console.log('Adding a map reducer');
             console.log(state.maps);
-            const currMaps = [...state.maps];
+            const stateCpy = (state === undefined) ? [...state] : [];
+
             const newMap = {
                 ...action.payload,
-                id: currMaps.length, // New id
+                id: stateCpy.length, // New id
             };
             // TEMPORARY fix
             // Make axios request here
@@ -27,7 +28,6 @@ const mapsReducer = (state, action) => {
                     console.log(err);
                 });
 
-            const stateCpy = (state) ? [...state] : [];
 
             return [
                 ...stateCpy,
