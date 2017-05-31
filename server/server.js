@@ -2,6 +2,9 @@
 
 var mapsData = [];
 
+
+mapsData.push(mapsInventory[0], mapsInventory[1]);
+
 // BASE SETUP
 // =============================================================================
 
@@ -14,6 +17,7 @@ var bodyParser = require('body-parser');
 // this will let us get the data from a POST
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use('Access-Control-Allow-Origin':'*');
 
 var port = process.env.PORT || 8000;        // set our port
 
