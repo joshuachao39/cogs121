@@ -32,12 +32,23 @@ We've added better indicators on drawing polygons
 
 We've added a user-friendly way to edit colors and label locations
 
+![mobile](/images/M15-MapsList.png)
 
-![mobile](/images/M15-1.png)
+We've restyled our app to match more with our final branding
 
-![mobile](/images/M15-2.png)
+![mobile](/images/M15-tilesList.png)
 
-![mobile](/images/M15-3.png)
-![mobile](/images/M15-4.png)
-![mobile](/images/M15-5.png)
+We've added a tiles list format for better previews during browsing
+
+![mobile](/images/M15-search.png)
+
+We've added filter/search functionality to mobile to help you find events
+
+![mobile](/images/M15-pinsTooltip.png)
+
+We've added the ability to click on individual (now colored) event points of interest to be able to identify and easily navigate easily to them.
+
+![mobile](/images/M15-navi.png)
+
+Pressing navigate opens this page
 
