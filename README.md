@@ -4,6 +4,7 @@
 * Allen Gao
 * Rishi Dhanaraj
 * Vincent Liaw
+* Yuxiao Fang
 
 ### Team number: 16, C7
 
