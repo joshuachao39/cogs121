@@ -31,7 +31,7 @@ function initMaps(mapsData) {
     });
 }
 
-axios.get('http://guorient-backend.herokuapp.com/maps')
+axios.get('https://guorient-backend.herokuapp.com/maps')
     .then((res) => {
         initMaps(res.data);
     })
