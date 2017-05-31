@@ -58,7 +58,6 @@ class MapList extends React.Component {
                                 key={elem.name}
                                 index={i}
                                 data={elem}
-                                index={i}
                                 mapless={false}
                             />
                         </div>

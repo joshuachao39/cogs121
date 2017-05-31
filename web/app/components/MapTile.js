@@ -2,8 +2,7 @@ import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import { Map, TileLayer, Polygon } from 'react-leaflet';
 
-const MapTile = ({ data, index, mapless }) => {
-    let id = 'New';
+const MapTile = ({ index, data, mapless }) => {
     let name = 'Name';
     let description = 'Create a new map';
 
@@ -13,7 +12,6 @@ const MapTile = ({ data, index, mapless }) => {
         marginTop: 20
     };
 
-    id = data.index;
     name = data.name;
     description = data.description;
 
@@ -50,7 +48,7 @@ const MapTile = ({ data, index, mapless }) => {
     return (
         <Link
             className="gr-card--link"
-            to={`/maps/${id}`}
+            to={`/maps/${index}`}
         >
             <div className="gr-card card" style={divStyle}>
                 {map}
@@ -64,6 +62,7 @@ const MapTile = ({ data, index, mapless }) => {
 };
 
 MapTile.propTypes = {
+    index: PropTypes.number,
     data: PropTypes.object,
     mapless: PropTypes.bool,
 };
