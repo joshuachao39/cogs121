@@ -2,9 +2,6 @@
 
 var mapsData = [];
 
-
-mapsData.push(mapsInventory[0], mapsInventory[1]);
-
 // BASE SETUP
 // =============================================================================
 
