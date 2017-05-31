@@ -30,9 +30,11 @@ export default class EventMap extends Component {
         longitudeDelta: 0.01,
       },
       receivedProps: false,
+      mapMarkers: [],
     };
 
     this.onRegionChange = this.onRegionChange.bind(this);
+    this.handleOnPress = this.handleOnPress.bind(this);
   }
 
   handleNavigation(la, lo) {
@@ -62,8 +64,34 @@ export default class EventMap extends Component {
     });
   }
 
+  handleOnPress(name, coords){
+    console.log(coords);
+    let totaLat= 0;
+    let totaLng = 0;
+    for (let i=0;i<coords.length;i++){
+        totaLat = totaLat + coords[i].latitude;
+        totaLng = totaLng + coords[i].longitude;
+    }
+    const center = {
+      latitude: totaLat/coords.length,
+      longitude: totaLng/coords.length,
+    };
+    console.log(center);
+
+    this.setState({
+      mapMarkers: [
+        ...this.state.mapMarkers,
+        {
+          name,
+          center,
+        },
+      ],
+    });
+  }
+
   render() {
     const { currMap, maps, loading } = this.props;
+    const _this = this;
 
     if (loading) {
       return <Text>Loading...</Text>;
@@ -84,6 +112,17 @@ export default class EventMap extends Component {
           coordinates={coords}
           strokeColor={'rgba(17,205,134,0.5)'}
           fillColor={'rgba(17,205,134,0.5)'}
+          onPress={() => _this.handleOnPress(pts.name, coords)}
+        />
+      );
+    });
+
+    const mapMarkersRendered = this.state.mapMarkers.map((marker) => {
+      const { name, center } = marker;
+      return (
+        <MapView.Marker
+          title={name}
+          coordinate={center}
         />
       );
     });
@@ -114,6 +153,7 @@ export default class EventMap extends Component {
       >
         <Polygon coordinates={borderPoints} />
         {interests}
+        {mapMarkersRendered}
       </MapView>
     );
 

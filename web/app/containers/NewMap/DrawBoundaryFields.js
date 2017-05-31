@@ -25,6 +25,7 @@ export default class DrawBoundaryFields extends React.Component {
             // Keeps track of if the boundary of the event has been created
             boundaryCreated: (this.props.polyCoords) ? true : false, // eslint-disable-line
             polygonDrawn: false,
+            boundaryError: '',
         };
 
         this.validate = this.validate.bind(this);
@@ -56,6 +57,9 @@ export default class DrawBoundaryFields extends React.Component {
             this.props.nextStep();
         } else {
             // TODO: Log an error here
+            this.setState({
+                boundaryError: 'Please create a boundary.'
+            });
             console.log('Boundary not created');
         }
     }
@@ -98,6 +102,9 @@ export default class DrawBoundaryFields extends React.Component {
                             <h4 className="gr-sidebar--instruction">
                                 Draw boundary of your venue
                             </h4>
+                            {!this.state.boundaryCreated &&
+                                <p className="error"> {this.state.boundaryError} </p>
+                            }
                         </div>
                         <div className="gr-step--selector gr-sidebar--bottom">
                             <button
